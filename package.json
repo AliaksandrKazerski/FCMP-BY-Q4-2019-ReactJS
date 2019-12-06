@@ -1,0 +1,43 @@
+{
+  "name": "fcmp-by-q4-2019-reactjs",
+  "version": "1.0.0",
+  "description": "Part 1",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --output-public-path=/dist/  --mode development --progress --open --hot",
+    "build": "cross-env NODE_ENV=development webpack --config webpack.config.js",
+    "build:prod": "cross-env NODE_ENV=production webpack --config webpack.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AliaksandrKazerski/FCMP-BY-Q4-2019-ReactJS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AliaksandrKazerski/FCMP-BY-Q4-2019-ReactJS/issues"
+  },
+  "homepage": "https://github.com/AliaksandrKazerski/FCMP-BY-Q4-2019-ReactJS#readme",
+  "devDependencies": {
+    "@babel/core": "^7.7.5",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/polyfill": "^7.7.0",
+    "@babel/preset-env": "^7.7.5",
+    "@babel/preset-react": "^7.7.4",
+    "@babel/preset-stage-0": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "cross-env": "^6.0.3",
+    "css-loader": "^3.2.1",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "^4.13.0",
+    "nodemon": "^2.0.1",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.1",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  },
+  "dependencies": {}
+}
