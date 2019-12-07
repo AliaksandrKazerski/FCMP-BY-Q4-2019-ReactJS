@@ -4,6 +4,8 @@ import ItemImage from '../../atoms/item-image/index';
 import ItemReleaseDate from '../../atoms/item-release-date';
 import ItemTitle from '../../atoms/item-title/inex';
 import ItemRating from '../../atoms/item-rating';
+import ItemDescription from '../../atoms/item-description';
+import SearchButton from '../../atoms/search-button';
 
 import './film.scss';
 
@@ -12,13 +14,16 @@ const classBlock = 'film';
 export default class Film extends React.Component {
 
   render() {
-    const { 
-      poster_path,
-      title,
-      release_date,
-      vote_count,
-
-    } = this.props.film;
+    const {
+      hideFilm,
+      film: { 
+        poster_path,
+        title,
+        release_date,
+        vote_count,
+        overview,
+      }
+     } = this.props;
 
     return(
       <div 
@@ -35,6 +40,13 @@ export default class Film extends React.Component {
         />
         <ItemReleaseDate
           releaseText={release_date}
+        />
+        <ItemDescription
+          descriptionText={overview}
+        />
+        <SearchButton
+          onClick={hideFilm}
+          defaultValue={'back'}
         />
       </div>
     );

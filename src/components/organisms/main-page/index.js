@@ -14,7 +14,8 @@ export default class MainPage extends React.Component {
       movies: [],
       error: '',
       showSearchPanel: true,
-      film: {},
+      film: null,
+      filmsGenre: '',
     };
   };
 
@@ -27,21 +28,32 @@ export default class MainPage extends React.Component {
       .catch(error => this.setState({error}));
   };
 
-  fetchMovieById = (id) => {
+  fetchMovieById = (id, genre) => {
     moviesAPI.getMovie(id)
       .then(data => {
         console.log(data);
         this.setState({film: data, showSearchPanel: false});
       })
       .catch(error => this.setState({error}));
+    moviesAPI.getMovies({genre})
+      .then(data => {
+        console.log(data);
+        this.setState({movies: data.data, filmsGenre: genre});
+      })
+      .catch(error => this.setState({error}));
   };
+
+  showSearchPanel = () => {
+    this.setState({showSearchPanel: true, film: null});
+  }
 
   render() {
     const { 
       movies, 
       resultsCount, 
       showSearchPanel, 
-      film 
+      film,
+      filmsGenre, 
     } = this.state
 
     return(
@@ -49,15 +61,19 @@ export default class MainPage extends React.Component {
         {showSearchPanel ? 
         <SearchPanel
           getSearchParams={this.fetchMovies}
-          resultsCount={resultsCount}
         /> :
         <Film
           film={film}
+          hideFilm={this.showSearchPanel}
         />
         }
         <ResultsBody
+          filmsGenre={filmsGenre}
+          film={film}
+          showResultCount={showSearchPanel}
           getFilm={this.fetchMovieById}
           movies={movies}
+          resultsCount={resultsCount}
         />
       </>
     );
