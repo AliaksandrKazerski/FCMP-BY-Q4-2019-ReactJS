@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import App from './components/organisms/app/index';
+import MainPage from './components/organisms/main-page/index';
 
 ReactDOM.render(
-  <App />,
+  <MainPage />,
   document.getElementById('root')
 );
 
