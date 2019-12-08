@@ -1,0 +1,19 @@
+.item-rating {
+  margin-top: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  width: 60px;
+  border: 1px solid #ffffff;
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+
+  &__text {
+    font-size: 30px;
+    color: #A1E66F;
+  }
+}

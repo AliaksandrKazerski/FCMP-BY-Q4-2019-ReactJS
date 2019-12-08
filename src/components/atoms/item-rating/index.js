@@ -9,11 +9,11 @@ export default class ItemRating extends React.Component {
 
     return(
       <>
-        <span 
+        <div 
           className={classBlock}
         >
-          {ratingText}
-        </span>
+          <span className={`${classBlock}__text`}>{ratingText}</span>
+        </div>
       </>
     );
   }

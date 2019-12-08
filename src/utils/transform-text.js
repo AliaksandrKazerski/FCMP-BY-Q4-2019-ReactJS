@@ -5,3 +5,17 @@ export function getTextToUpperCase(text) {
 export function getTextToLowerCase(text) {
   return text.toLowerCase();
 }
+
+export function getSubstringFourSimbols(text) {
+  if (text.length > 4) {
+    return text.substring(0, 4);
+  }
+  return text;
+}
+
+export function getTextFromArray(text) {
+  if (Array.isArray(text)) {
+    return text.join(' & ');
+  }
+  return text;
+}

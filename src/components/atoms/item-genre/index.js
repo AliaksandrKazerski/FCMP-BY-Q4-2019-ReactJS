@@ -1,6 +1,8 @@
 import React from 'react';
 import './item-genre.scss';
 
+import { getTextFromArray } from '../../../utils/transform-text';
+
 const classBlock = 'item-genre';
 
 export default class ItemGenre extends React.Component {
@@ -12,7 +14,7 @@ export default class ItemGenre extends React.Component {
       <span 
         className={classBlock}
       >
-        {genreText}
+        {getTextFromArray(genreText)}
       </span>
     </>
     );

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ItemImage from '../../atoms/item-image/index';
-import ItemReleaseDate from '../../atoms/item-release-date';
+import ItemReleaseDateAndRunTime from '../../atoms/item-release-date';
 import ItemTitle from '../../atoms/item-title/inex';
 import ItemRating from '../../atoms/item-rating';
 import ItemDescription from '../../atoms/item-description';
@@ -13,6 +13,13 @@ const classBlock = 'film';
 
 export default class Film extends React.Component {
 
+  renderReleaseDateAndRunTime = (data, runTime) => {
+    return <ItemReleaseDateAndRunTime
+      releaseText={data}
+      runTime={runTime}
+    />
+  }
+
   render() {
     const {
       hideFilm,
@@ -20,8 +27,9 @@ export default class Film extends React.Component {
         poster_path,
         title,
         release_date,
-        vote_count,
+        vote_average,
         overview,
+        runtime,
       }
      } = this.props;
 
@@ -32,22 +40,27 @@ export default class Film extends React.Component {
         <ItemImage
           imgURL={poster_path}
         />
-        <ItemTitle
-          titleText={title}
-        />
-        <ItemRating
-          ratingText={vote_count}
-        />
-        <ItemReleaseDate
-          releaseText={release_date}
-        />
-        <ItemDescription
-          descriptionText={overview}
-        />
-        <SearchButton
-          onClick={hideFilm}
-          defaultValue={'back'}
-        />
+        <div className={`${classBlock}__overview`}>
+          <div className={`${classBlock}__overview--title-and-raiting`}>
+            <ItemTitle
+              titleText={title}
+            />
+            <ItemRating
+              ratingText={vote_average}
+            />
+          </div>
+          <div className={`${classBlock}__overview--release-and-runtime`}>
+            {release_date && this.renderReleaseDateAndRunTime(release_date)}
+            {runtime && this.renderReleaseDateAndRunTime(runtime, true)}
+          </div>
+          <ItemDescription
+            descriptionText={overview}
+          />
+          <SearchButton
+            onClick={hideFilm}
+            defaultValue={'back'}
+          />
+        </div>
       </div>
     );
   }

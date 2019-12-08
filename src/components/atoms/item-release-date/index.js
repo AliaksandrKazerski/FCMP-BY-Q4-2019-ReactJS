@@ -1,18 +1,21 @@
 import React from 'react';
+
+import { getSubstringFourSimbols } from '../../../utils/transform-text';
+
 import './item-release-date.scss';
 
 const classBlock = 'item-release-date';
 
-export default class ItemReleaseDate extends React.Component {
+export default class ItemReleaseDateAndRunTime extends React.Component {
   render() {
-    const { releaseText } = this.props;
+    const { releaseText, runTime } = this.props;
 
     return(
       <>
         <span 
           className={classBlock}
         >
-          {releaseText}
+          {runTime ? `${releaseText} min` : getSubstringFourSimbols(releaseText)}
         </span>
       </>
     );
