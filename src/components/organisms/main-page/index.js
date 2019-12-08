@@ -5,6 +5,10 @@ import ResultsBody from '../../molecules/results-body';
 import Film from '../../molecules/film';
 import { moviesAPI } from '../../../api';
 
+import './main-page.scss';
+
+const classBlock = 'main-page';
+
 export default class MainPage extends React.Component {
   constructor(props) {
     super(props);
@@ -57,25 +61,27 @@ export default class MainPage extends React.Component {
     } = this.state
 
     return(
-      <>
-        {showSearchPanel ? 
-        <SearchPanel
-          getSearchParams={this.fetchMovies}
-        /> :
-        <Film
-          film={film}
-          hideFilm={this.showSearchPanel}
-        />
-        }
-        <ResultsBody
-          filmsGenre={filmsGenre}
-          film={film}
-          showResultCount={showSearchPanel}
-          getFilm={this.fetchMovieById}
-          movies={movies}
-          resultsCount={resultsCount}
-        />
-      </>
+      <main className={classBlock}>
+        <div className={`${classBlock}__content`}>
+          {showSearchPanel ? 
+          <SearchPanel
+            getSearchParams={this.fetchMovies}
+          /> :
+          <Film
+            film={film}
+            hideFilm={this.showSearchPanel}
+          />
+          }
+          <ResultsBody
+            filmsGenre={filmsGenre}
+            film={film}
+            showResultCount={showSearchPanel}
+            getFilm={this.fetchMovieById}
+            movies={movies}
+            resultsCount={resultsCount}
+          />
+        </div>
+      </main>
     );
   };
 }

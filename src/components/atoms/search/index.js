@@ -2,6 +2,7 @@ import React from 'react';
 import './search.scss';
 
 const classBlock = 'search';
+const DEFAULT_PLACEHOLDER = 'Search';
 
 export default class Search extends React.Component {
   constructor(props) {
@@ -29,6 +30,7 @@ export default class Search extends React.Component {
           className={classBlock}
           onChange={this.onChange}
           value={defaultValue}
+          placeholder={DEFAULT_PLACEHOLDER}
         >
         </input>
       </>

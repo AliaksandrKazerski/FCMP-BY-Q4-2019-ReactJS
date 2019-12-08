@@ -1,0 +1,6 @@
+.movie {
+  &__release-and-title {
+    display: flex;
+    justify-content: space-between;
+  }
+}

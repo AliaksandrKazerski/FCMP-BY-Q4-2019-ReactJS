@@ -1,7 +1,17 @@
 .search-button {
-  background-color: green;
   
   &--active {
-    background-color: red;
+    padding: 0px 70px;
+    height: 60px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    font-size: 18px;
+    color: #ffffff;
+    outline: none;
+    border: none;
+    background-color: #F65261;
   }
 }

@@ -4,6 +4,8 @@ import Search from '../../atoms/search/index';
 import SearchFilter from '../../atoms/search-filter/index';
 import SearchButton from '../../atoms/search-button/index';
 
+import { getTextToUpperCase } from '../../../utils/transform-text';
+
 import './search-panel.scss';
 
 const classBlock = 'search-panel';
@@ -41,26 +43,36 @@ export default class SearchPanel extends React.Component {
 
     return(
       <div className={classBlock}>
-        <Search
-          getValue={this.changeSearch}
-          searchValue={search}
-        />
-        <SearchFilter
-          getActiveFilter={this.changeSearchBy}
-          activeFilter={searchBy}
-          title={'search by'}
-          filters={['title', 'gengery']}
-        />
-        <SearchButton
-          onClick={this.prepareSearchParams}
-          defaultValue={'search'}
-        />
-        <SearchFilter
-          getActiveFilter={this.changeSortBy}
-          activeFilter={sortBy}
-          title={'sort by'}
-          filters={['release date', 'rating']}
-        />
+        <h1 className={`${classBlock}__title`}>
+          {getTextToUpperCase('find your movie')}
+        </h1>
+        <div className={`${classBlock}__search-block`}>
+          <Search
+            getValue={this.changeSearch}
+            searchValue={search}
+          />
+          <SearchButton
+            active
+            onClick={this.prepareSearchParams}
+            defaultValue={'search'}
+          />
+        </div>
+        <div className={`${classBlock}__first-filter`}>
+          <SearchFilter
+            getActiveFilter={this.changeSearchBy}
+            activeFilter={searchBy}
+            title={'search by'}
+            filters={['title', 'gengery']}
+          />
+        </div>
+        <div className={`${classBlock}__second-filter`}>
+          <SearchFilter
+            getActiveFilter={this.changeSortBy}
+            activeFilter={sortBy}
+            title={'sort by'}
+            filters={['release date', 'rating']}
+          />
+        </div>
       </div>
     );
   }

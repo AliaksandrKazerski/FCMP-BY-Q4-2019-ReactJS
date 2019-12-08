@@ -1,4 +1,7 @@
 import React from 'react';
+
+import { getTextToUpperCase } from '../../../utils/transform-text';
+
 import './search-button.scss';
 
 const classBlock = 'search-button';
@@ -13,7 +16,7 @@ export default class SearchButton extends React.Component {
           type={'button'} 
           className={active ? `${classBlock}--active` : classBlock}
           onClick={onClick}
-          value={defaultValue}
+          value={getTextToUpperCase(defaultValue)}
         >
         </input>
       </>

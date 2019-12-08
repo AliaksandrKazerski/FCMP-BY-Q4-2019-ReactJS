@@ -8,13 +8,12 @@ export default class ItemImage extends React.Component {
     const { imgURL } = this.props;
 
     return(
-        <div 
+        <>
+          <img 
           className={classBlock}
-        >
-          <img
           src={imgURL}
           />
-        </div>
+        </>
     );
   }
 }

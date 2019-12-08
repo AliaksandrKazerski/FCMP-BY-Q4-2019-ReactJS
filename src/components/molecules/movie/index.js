@@ -28,14 +28,16 @@ export default class Movie extends React.Component {
           <ItemImage
             imgURL={imgURL}
           />
-          <ItemReleaseDate
-            releaseText={releaseText}
-          />
+          <div className={`${classBlock}__release-and-title`}>
+            <ItemTitle
+              titleText={titleText}
+            />
+            <ItemReleaseDate
+              releaseText={releaseText}
+            />
+          </div>
           <ItemGenre
             genreText={genreText}
-          />
-          <ItemTitle
-            titleText={titleText}
           />
         </div>
     );

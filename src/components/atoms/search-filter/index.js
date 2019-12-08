@@ -1,6 +1,10 @@
 import React from 'react';
-import './search-filter.scss';
+
 import SearchButton from '../search-button';
+
+import { getTextToUpperCase, getTextToLowerCase } from '../../../utils/transform-text';
+
+import './search-filter.scss';
 
 const classBlock = 'search-filter';
 
@@ -17,7 +21,7 @@ export default class SearchFilter extends React.Component {
     const { value } = e.target
     const { getActiveFilter } = this.props;
 
-    this.setState({ activeFilter: value }, () => {getActiveFilter(this.state.activeFilter)});
+    this.setState({ activeFilter: getTextToLowerCase(value) }, () => {getActiveFilter(this.state.activeFilter)});
   }
 
   renderFilters = (filters) => {
@@ -26,7 +30,7 @@ export default class SearchFilter extends React.Component {
     return filters.map(filter => {
       return <SearchButton
         onClick={this.changeActiveFilter}
-        defaultValue={filter}
+        defaultValue={getTextToUpperCase(filter)}
         active={filter === activeFilter}
       />
     });
@@ -37,10 +41,12 @@ export default class SearchFilter extends React.Component {
 
     return(
       <div className={classBlock}>
-        <span>
-          {title}
+        <span className={`${classBlock}__title`}>
+          {getTextToUpperCase(title)}
         </span>
+        <div className={`${classBlock}__filters`}>
         {filters && this.renderFilters(filters)}
+        </div>
       </div>
     );
   }

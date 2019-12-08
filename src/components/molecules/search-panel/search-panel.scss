@@ -1,0 +1,34 @@
+.search-panel {
+  position: relative;
+  padding-top: 110px;
+  height: 400px;
+  background-color: lightblue;
+
+  &__title {
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: normal;
+    margin-left: 130px;
+  }
+
+  &__search-block {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    
+    .search {
+      margin-right: 15px;
+    }
+  }
+
+  &__first-filter {
+    margin-left: 130px;
+    margin-top: 15px;
+  }
+
+  &__second-filter {
+    bottom: -52.5px;
+    right: 120px;
+    position: absolute;
+  }
+}

@@ -1,0 +1,36 @@
+.results-body {
+  &__additional-panel {
+    display: flex;
+    align-items: center;
+    height: 70px;
+    background-color: #555555;
+
+    &--result-count {
+      color: #ffffff;
+      margin-left: 120px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+
+  &__movies {
+    padding: 60px 70px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    min-height: 400px;
+    background-color: #232323;
+
+    &--no-found {
+      color: #ffffff;
+      font-size: 50px;
+      line-height: 400px;
+      margin: 0 auto;
+    }
+  }
+
+  &__footer {
+    height: 70px;
+    background-color: #555555;
+  }
+}

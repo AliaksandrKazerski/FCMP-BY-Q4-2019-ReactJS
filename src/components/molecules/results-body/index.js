@@ -13,7 +13,7 @@ export default class ResultsBody extends React.Component {
   renderAdditionalPanel = () => {
     const { showResultCount, resultsCount, filmsGenre } = this.props 
     return (
-      <div>
+      <div className={`${classBlock}__additional-panel--result-count`}>
         {showResultCount ? 
           <ResultCount
           resultValue={resultsCount}
@@ -54,8 +54,14 @@ export default class ResultsBody extends React.Component {
 
     return(
       <div className={classBlock}>
-        {!!movies.length && this.renderAdditionalPanel()}
-        {!!movies.length ? this.renderMovies() : <span> No films found </span>}
+        <div className={`${classBlock}__additional-panel`}>
+          {!!movies.length && this.renderAdditionalPanel()}
+        </div>
+        <div className={`${classBlock}__movies`}>
+          {!!movies.length ? this.renderMovies() : <span className={`${classBlock}__movies--no-found`}> No films found </span>}
+        </div>
+        <div className={`${classBlock}__footer`}>
+        </div>
       </div>
     );
   }
