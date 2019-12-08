@@ -3,8 +3,11 @@ import React from 'react';
 import Search from '../../atoms/search/index';
 import SearchFilter from '../../atoms/search-filter/index';
 import SearchButton from '../../atoms/search-button/index';
+import IconButton from '../../atoms/icon-button';
 
 import { getTextToUpperCase } from '../../../utils/transform-text';
+
+import Logo from '../../../../img/netflix.png';
 
 import './search-panel.scss';
 
@@ -43,6 +46,9 @@ export default class SearchPanel extends React.Component {
 
     return(
       <div className={classBlock}>
+        <IconButton
+          logo={Logo}
+        />
         <h1 className={`${classBlock}__title`}>
           {getTextToUpperCase('find your movie')}
         </h1>

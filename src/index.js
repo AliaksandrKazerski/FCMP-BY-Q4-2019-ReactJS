@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import MainPage from './components/organisms/main-page/index';
+import App from './layouts/app';
 
 ReactDOM.render(
-  <MainPage />,
+  <App/>,
   document.getElementById('root')
 );
-

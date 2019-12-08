@@ -5,7 +5,10 @@ import ItemReleaseDateAndRunTime from '../../atoms/item-release-date';
 import ItemTitle from '../../atoms/item-title/inex';
 import ItemRating from '../../atoms/item-rating';
 import ItemDescription from '../../atoms/item-description';
-import SearchButton from '../../atoms/search-button';
+import IconButton from '../../atoms/icon-button';
+
+import SearchLogo from '../../../../img/search-2.png';
+import NetflixLogo from '../../../../img/netflix.png';
 
 import './film.scss';
 
@@ -37,6 +40,9 @@ export default class Film extends React.Component {
       <div 
         className={classBlock}
       >
+        <IconButton
+          logo={NetflixLogo}
+        />
         <ItemImage
           imgURL={poster_path}
         />
@@ -56,9 +62,9 @@ export default class Film extends React.Component {
           <ItemDescription
             descriptionText={overview}
           />
-          <SearchButton
+          <IconButton
+            logo={SearchLogo}
             onClick={hideFilm}
-            defaultValue={'back'}
           />
         </div>
       </div>

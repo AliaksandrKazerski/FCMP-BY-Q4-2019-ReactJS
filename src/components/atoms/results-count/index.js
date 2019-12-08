@@ -1,5 +1,4 @@
 import React from 'react';
-import './results-count.scss';
 
 const classBlock = 'results-count';
 

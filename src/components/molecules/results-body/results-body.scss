@@ -10,6 +10,12 @@
       margin-left: 120px;
       font-size: 20px;
       font-weight: bold;
+
+      .item-genre {
+        opacity: 1;
+        color: #ffffff;
+        font-size: 20px;
+      }
     }
   }
 
@@ -32,5 +38,13 @@
   &__footer {
     height: 70px;
     background-color: #555555;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .icon-button {
+      width: 200px;
+      height: 80px;
+    }
   }
 }

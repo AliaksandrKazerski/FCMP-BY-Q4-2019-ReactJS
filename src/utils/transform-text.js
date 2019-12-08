@@ -15,6 +15,7 @@ export function getSubstringFourSimbols(text) {
 
 export function getTextFromArray(text) {
   if (Array.isArray(text)) {
+    text.length = 3;
     return text.join(' & ');
   }
   return text;

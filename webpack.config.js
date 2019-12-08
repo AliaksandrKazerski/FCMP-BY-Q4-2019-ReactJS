@@ -53,7 +53,12 @@ module.exports = {
           options: isDevelopment ? {sourceMap: true} : {},
         }
       ]
-    }]
+    }, {
+      test: /\.(png|svg|jpg|gif)$/,
+      use: [
+         'file-loader',
+        ],
+    },]
   },
   devServer: {
     compress: true,

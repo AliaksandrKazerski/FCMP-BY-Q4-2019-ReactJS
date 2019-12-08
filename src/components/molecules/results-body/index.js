@@ -3,6 +3,9 @@ import React from 'react';
 import Movie from '../../molecules/movie';
 import ResultCount from '../../atoms/results-count'
 import ItemGenre from '../../atoms/item-genre';
+import IconButton from '../../atoms/icon-button';
+
+import Logo from '../../../../img/netflix.png'
 
 import './results-body.scss';
 
@@ -61,6 +64,9 @@ export default class ResultsBody extends React.Component {
           {!!movies.length ? this.renderMovies() : <span className={`${classBlock}__movies--no-found`}> No films found </span>}
         </div>
         <div className={`${classBlock}__footer`}>
+          <IconButton
+            logo={Logo}
+          />
         </div>
       </div>
     );

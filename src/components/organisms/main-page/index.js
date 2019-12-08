@@ -16,7 +16,7 @@ export default class MainPage extends React.Component {
     this.state = {
       resultsCount: '',
       movies: [],
-      error: '',
+      error: null,
       showSearchPanel: true,
       film: null,
       filmsGenre: '',
@@ -26,7 +26,6 @@ export default class MainPage extends React.Component {
   fetchMovies = (params) => {
     moviesAPI.getMovies(params)
       .then(data => {
-        console.log(data);
         this.setState({movies: data.data, resultsCount: data.total});
       })
       .catch(error => this.setState({error}));
@@ -35,13 +34,11 @@ export default class MainPage extends React.Component {
   fetchMovieById = (id, genre) => {
     moviesAPI.getMovie(id)
       .then(data => {
-        console.log(data);
         this.setState({film: data, showSearchPanel: false});
       })
       .catch(error => this.setState({error}));
     moviesAPI.getMovies({genre})
       .then(data => {
-        console.log(data);
         this.setState({movies: data.data, filmsGenre: genre});
       })
       .catch(error => this.setState({error}));
@@ -57,30 +54,35 @@ export default class MainPage extends React.Component {
       resultsCount, 
       showSearchPanel, 
       film,
-      filmsGenre, 
+      filmsGenre,
+      error, 
     } = this.state
 
     return(
       <main className={classBlock}>
+        {error ?
+        <div className={`${classBlock}__error`}>
+          {error}
+        </div> :
         <div className={`${classBlock}__content`}>
-          {showSearchPanel ? 
-          <SearchPanel
-            getSearchParams={this.fetchMovies}
-          /> :
-          <Film
-            film={film}
-            hideFilm={this.showSearchPanel}
-          />
-          }
-          <ResultsBody
-            filmsGenre={filmsGenre}
-            film={film}
-            showResultCount={showSearchPanel}
-            getFilm={this.fetchMovieById}
-            movies={movies}
-            resultsCount={resultsCount}
-          />
-        </div>
+        {showSearchPanel ? 
+        <SearchPanel
+          getSearchParams={this.fetchMovies}
+        /> :
+        <Film
+          film={film}
+          hideFilm={this.showSearchPanel}
+        />
+        }
+        <ResultsBody
+          filmsGenre={filmsGenre}
+          film={film}
+          showResultCount={showSearchPanel}
+          getFilm={this.fetchMovieById}
+          movies={movies}
+          resultsCount={resultsCount}
+        />
+      </div>}
       </main>
     );
   };
