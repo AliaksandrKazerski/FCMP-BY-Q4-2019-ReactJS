@@ -1,4 +1,5 @@
+@import '../../../mixins/font-montserrat.scss';
+
 .item-description {
-  font-size: 18px;
-  color: #ffffff;
+  @include font-montserrat(18px, #ffffff);
 }

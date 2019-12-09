@@ -1,6 +1,8 @@
+@import '../../../mixins/font-montserrat.scss';
+
 .search-filter {
   display: flex;
-  font-size: 15px;
+  @include font-montserrat(15px, #ffffff);
   height: 35px;
 
   &__title {
@@ -20,10 +22,9 @@
     }
 
     .search-button {
+      @include font-montserrat(15px, #ffffff);
       padding: 0px 30px;
       height: 35px;
-      font-size: 15px;
-      color: #ffffff;
       background-color: #424242;
       outline: none;
       border: none;
@@ -33,7 +34,7 @@
     .search-button--active {
       padding: 0px 30px;
       height: 35px;
-      font-size: 15px;
+      @include font-montserrat(15px);
     }
   }
 }

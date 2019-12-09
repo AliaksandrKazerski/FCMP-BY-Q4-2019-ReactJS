@@ -1,3 +1,5 @@
+@import '../../../mixins/font-montserrat.scss';
+
 .results-body {
   &__additional-panel {
     display: flex;
@@ -6,15 +8,12 @@
     background-color: #555555;
 
     &--result-count {
-      color: #ffffff;
+      @include font-montserrat(20px, #ffffff);
       margin-left: 120px;
-      font-size: 20px;
       font-weight: bold;
 
       .item-genre {
-        opacity: 1;
-        color: #ffffff;
-        font-size: 20px;
+        @include font-montserrat(20px, #ffffff);
       }
     }
   }
@@ -28,8 +27,7 @@
     background-color: #232323;
 
     &--no-found {
-      color: #ffffff;
-      font-size: 50px;
+      @include font-montserrat(50px, #ffffff);
       line-height: 400px;
       margin: 0 auto;
     }

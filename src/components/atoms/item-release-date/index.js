@@ -11,13 +11,11 @@ export default class ItemReleaseDateAndRunTime extends React.Component {
     const { releaseText, runTime } = this.props;
 
     return(
-      <>
-        <span 
-          className={classBlock}
-        >
+      <div className={classBlock}>
+        <span>
           {runTime ? `${releaseText} min` : getSubstringFourSimbols(releaseText)}
         </span>
-      </>
+      </div>
     );
   }
 }

@@ -1,4 +1,4 @@
-//@import '../../../mixins/font-dosis.scss';
+@import '../../../mixins/font-montserrat.scss';
 
 .search-panel {
   position: relative;
@@ -15,10 +15,7 @@
   }
 
   &__title {
-    //@include font-dosis(30, #ffffff, normal);
-    color: #ffffff;
-    font-size: 30px;
-    font-weight: normal;
+    @include font-montserrat(30px, #ffffff, normal);
     margin-left: 130px;
   }
 

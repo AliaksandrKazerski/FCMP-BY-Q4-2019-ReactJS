@@ -1,4 +1,7 @@
+@import '../../../mixins/font-montserrat.scss';
+
 .search {
+  @include font-montserrat(18px, #ffffff);
   width: 710px;
   height: 60px;
   border-radius: 4px;
@@ -6,8 +9,6 @@
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
-  font-size: 18px;
-  color: #ffffff;
   padding-left: 18px;
   background: #424242;
   opacity: 0.8;
