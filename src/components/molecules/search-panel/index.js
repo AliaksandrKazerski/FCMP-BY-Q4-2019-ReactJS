@@ -7,7 +7,7 @@ import IconButton from '../../atoms/icon-button';
 
 import { getTextToUpperCase } from '../../../utils/transform-text';
 
-import Logo from '../../../../img/netflix.png';
+import Logo from '../../../../img/netflix2.png';
 
 import './search-panel.scss';
 
@@ -31,7 +31,7 @@ export default class SearchPanel extends React.Component {
 
   changeSearch = (value) => {
     this.setState({ search: value });
-  } 
+  }
 
   changeSearchBy = (filter) => {
     this.setState({ searchBy: filter });

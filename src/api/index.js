@@ -15,4 +15,4 @@ export const moviesAPI = {
     return fetch(`${DEFAULT_URL}/${id}`)
       .then(res => res.json());
   }
-}
+};

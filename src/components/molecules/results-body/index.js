@@ -5,7 +5,7 @@ import ResultCount from '../../atoms/results-count'
 import ItemGenre from '../../atoms/item-genre';
 import IconButton from '../../atoms/icon-button';
 
-import Logo from '../../../../img/netflix.png'
+import Logo from '../../../../img/netflix2.png'
 
 import './results-body.scss';
 
@@ -14,13 +14,13 @@ const classBlock = 'results-body';
 export default class ResultsBody extends React.Component {
 
   renderAdditionalPanel = () => {
-    const { showResultCount, resultsCount, filmsGenre } = this.props 
+    const { showResultCount, resultsCount, filmsGenre } = this.props
     return (
       <div className={`${classBlock}__additional-panel--result-count`}>
-        {showResultCount ? 
+        {showResultCount ?
           <ResultCount
           resultValue={resultsCount}
-          /> : 
+          /> :
           <span>
             {'Films by '}
             <ItemGenre
@@ -31,7 +31,7 @@ export default class ResultsBody extends React.Component {
         }
       </div>
     )
-  }
+  };
 
   renderMovies = () => {
     const { movies, getFilm, film } = this.props;
@@ -50,7 +50,7 @@ export default class ResultsBody extends React.Component {
         />
       );
     })
-  }
+  };
 
   render() {
     const { movies } = this.props;
@@ -70,5 +70,5 @@ export default class ResultsBody extends React.Component {
         </div>
       </div>
     );
-  }
-}
+  };
+};

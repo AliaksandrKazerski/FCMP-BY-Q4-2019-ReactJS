@@ -46,17 +46,17 @@ export default class MainPage extends React.Component {
 
   showSearchPanel = () => {
     this.setState({showSearchPanel: true, film: null});
-  }
+  };
 
   render() {
-    const { 
-      movies, 
-      resultsCount, 
-      showSearchPanel, 
+    const {
+      movies,
+      resultsCount,
+      showSearchPanel,
       film,
       filmsGenre,
-      error, 
-    } = this.state
+      error,
+    } = this.state;
 
     return(
       <main className={classBlock}>
@@ -65,7 +65,7 @@ export default class MainPage extends React.Component {
           {error}
         </div> :
         <div className={`${classBlock}__content`}>
-        {showSearchPanel ? 
+        {showSearchPanel ?
         <SearchPanel
           getSearchParams={this.fetchMovies}
         /> :
@@ -86,4 +86,4 @@ export default class MainPage extends React.Component {
       </main>
     );
   };
-}
+};

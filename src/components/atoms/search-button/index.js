@@ -8,13 +8,13 @@ const classBlock = 'search-button';
 
 export default class SearchButton extends React.Component {
   render() {
-    const { defaultValue, onClick, active } = this.props;
+    const { defaultValue, onClick, active, additionalClass } = this.props;
 
     return(
       <>
         <input
-          type={'button'} 
-          className={active ? `${classBlock}--active` : classBlock}
+          type={'button'}
+          className={active ? `${classBlock}--active ${additionalClass}` : `${classBlock} ${additionalClass}`}
           onClick={onClick}
           value={getTextToUpperCase(defaultValue)}
         >

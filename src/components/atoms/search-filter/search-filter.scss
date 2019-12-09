@@ -10,11 +10,14 @@
   }
 
   &__filters {
-    border-radius: 4px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -ms-border-radius: 4px;
-    -o-border-radius: 4px;
+
+    .left {
+      border-radius: 4px 0 0 4px;
+    }
+
+    .right {
+      border-radius: 0 4px 4px 0;
+    }
 
     .search-button {
       padding: 0px 30px;
@@ -24,19 +27,13 @@
       background-color: #424242;
       outline: none;
       border: none;
-      opacity: 0.6;
+      opacity: 0.8;
     }
 
     .search-button--active {
       padding: 0px 30px;
-      width: none;
       height: 35px;
       font-size: 15px;
-      border-radius: 0px;
-      -webkit-border-radius: 0px;
-      -moz-border-radius: 0px;
-      -ms-border-radius: 0px;
-      -o-border-radius: 0px;
     }
   }
 }

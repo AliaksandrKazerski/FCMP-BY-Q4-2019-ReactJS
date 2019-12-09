@@ -1,8 +1,10 @@
+//@import '../../../mixins/font-dosis.scss';
+
 .search-panel {
   position: relative;
   padding-top: 110px;
   height: 400px;
-  background-color: lightblue;
+  background: url('../../../../img/background1.jpg');
 
   .icon-button {
     position: absolute;
@@ -13,6 +15,7 @@
   }
 
   &__title {
+    //@include font-dosis(30, #ffffff, normal);
     color: #ffffff;
     font-size: 30px;
     font-weight: normal;
@@ -23,7 +26,7 @@
     margin-top: 40px;
     display: flex;
     justify-content: center;
-    
+
     .search {
       margin-right: 15px;
     }

@@ -7,8 +7,8 @@ import ItemRating from '../../atoms/item-rating';
 import ItemDescription from '../../atoms/item-description';
 import IconButton from '../../atoms/icon-button';
 
-import SearchLogo from '../../../../img/search-2.png';
-import NetflixLogo from '../../../../img/netflix.png';
+import SearchLogo from '../../../../img/search-1.jpg';
+import NetflixLogo from '../../../../img/netflix2.png';
 
 import './film.scss';
 
@@ -21,12 +21,12 @@ export default class Film extends React.Component {
       releaseText={data}
       runTime={runTime}
     />
-  }
+  };
 
   render() {
     const {
       hideFilm,
-      film: { 
+      film: {
         poster_path,
         title,
         release_date,
@@ -37,7 +37,7 @@ export default class Film extends React.Component {
      } = this.props;
 
     return(
-      <div 
+      <div
         className={classBlock}
       >
         <IconButton
@@ -69,5 +69,5 @@ export default class Film extends React.Component {
         </div>
       </div>
     );
-  }
-}
+  };
+};

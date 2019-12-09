@@ -12,16 +12,16 @@ const classBlock = 'movie';
 export default class Movie extends React.Component {
 
   render() {
-    const { 
+    const {
       imgURL,
       releaseText,
       genreText,
       titleText,
-      onClick, 
+      onClick,
     } = this.props;
 
     return(
-      <div 
+      <div
         className={classBlock}
         onClick={onClick}
       >
@@ -41,5 +41,5 @@ export default class Movie extends React.Component {
           />
         </div>
     );
-  }
-}
+  };
+};
