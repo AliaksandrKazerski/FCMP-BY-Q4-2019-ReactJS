@@ -9,7 +9,7 @@ export default class IconButton extends React.Component {
     return(
       <>
         <img
-          src={logo} 
+          src={logo}
           className={classBlock}
           onClick={onClick}
         />

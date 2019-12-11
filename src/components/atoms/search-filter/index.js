@@ -39,10 +39,11 @@ export default class SearchFilter extends React.Component {
     return filters.map((filter, pos, filters) => {
       const additionalClass = getAdditionalClass(pos, filters);
       return <SearchButton
+        key={filter.id}
         additionalClass={additionalClass}
         onClick={this.changeActiveFilter}
-        defaultValue={getTextToUpperCase(filter)}
-        active={filter === activeFilter}
+        defaultValue={getTextToUpperCase(filter.name)}
+        active={filter.name === activeFilter}
       />
     });
   };

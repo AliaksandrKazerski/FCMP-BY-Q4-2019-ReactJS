@@ -12,6 +12,8 @@ import Logo from '../../../../img/netflix2.png';
 import './search-panel.scss';
 
 const classBlock = 'search-panel';
+const searchByFilter = [{id: '1', name: 'title'}, {id: '2', name: 'gengery'}];
+const searchSortFilter = [{id: '1', name: 'release date'}, {id: '2', name: 'rating'}];
 
 export default class SearchPanel extends React.Component {
   constructor(props) {
@@ -68,7 +70,7 @@ export default class SearchPanel extends React.Component {
             getActiveFilter={this.changeSearchBy}
             activeFilter={searchBy}
             title={'search by'}
-            filters={['title', 'gengery']}
+            filters={searchByFilter}
           />
         </div>
         <div className={`${classBlock}__second-filter`}>
@@ -76,7 +78,7 @@ export default class SearchPanel extends React.Component {
             getActiveFilter={this.changeSortBy}
             activeFilter={sortBy}
             title={'sort by'}
-            filters={['release date', 'rating']}
+            filters={searchSortFilter}
           />
         </div>
       </div>

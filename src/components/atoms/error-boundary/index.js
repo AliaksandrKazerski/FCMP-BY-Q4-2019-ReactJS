@@ -1,5 +1,9 @@
 import React from 'react';
 
+import './error-boundary.scss';
+
+const classBlock = 'error-boundary';
+
 export default class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -12,9 +16,13 @@ export default class ErrorBoundary extends React.Component {
 
   render() {
     if (this.state.hasError) {
-      return <h1>Something went wrong.</h1>;
+      return(
+      <div className={classBlock}>
+        <h1 className={`${classBlock}__title`}>The application didn't work. Please come back later.</h1>
+      </div>
+      );
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
