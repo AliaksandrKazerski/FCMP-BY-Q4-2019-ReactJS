@@ -4,7 +4,7 @@ import './search.scss';
 const classBlock = 'search';
 const DEFAULT_PLACEHOLDER = 'Search';
 
-export default class Search extends React.Component {
+export default class Search extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -12,7 +12,7 @@ export default class Search extends React.Component {
       inputValue: this.props.defaultValue
     }
   }
-  
+
 
   onChange = (e) => {
     const  { value }  = e.target
@@ -26,7 +26,7 @@ export default class Search extends React.Component {
     return(
       <>
         <input
-          type={'search'} 
+          type={'search'}
           className={classBlock}
           onChange={this.onChange}
           value={defaultValue}

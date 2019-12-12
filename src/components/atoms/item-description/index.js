@@ -3,13 +3,13 @@ import './item-description.scss';
 
 const classBlock = 'item-description';
 
-export default class ItemDescription extends React.Component {
+export default class ItemDescription extends React.PureComponent {
   render() {
     const { descriptionText } = this.props;
 
     return(
       <>
-      <span 
+      <span
         className={classBlock}
       >
         {descriptionText}
