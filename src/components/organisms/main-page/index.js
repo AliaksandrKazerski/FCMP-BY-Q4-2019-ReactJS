@@ -1,22 +1,21 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import SearchPanel from '../../molecules/search-panel';
 import ResultsBody from '../../molecules/results-body';
 import Film from '../../molecules/film';
 import { moviesAPI } from '../../../api';
+import { getMovies } from '../../../store/thunks/movieThunks';
 
 import './main-page.scss';
 
 const classBlock = 'main-page';
 
-export default class MainPage extends React.Component {
+class MainPage extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      resultsCount: '',
-      movies: [],
-      error: null,
       showSearchPanel: true,
       film: null,
       filmsGenre: '',
@@ -24,11 +23,8 @@ export default class MainPage extends React.Component {
   };
 
   fetchMovies = (params) => {
-    moviesAPI.getMovies(params)
-      .then(data => {
-        this.setState({movies: data.data, resultsCount: data.total});
-      })
-      .catch(error => this.setState({error}));
+    const { getMovies } = this.props;
+    getMovies(params);
   };
 
   fetchMovieById = (id, genre) => {
@@ -49,14 +45,18 @@ export default class MainPage extends React.Component {
   };
 
   render() {
+    console.log(this.props);
     const {
-      movies,
-      resultsCount,
       showSearchPanel,
       film,
       filmsGenre,
       error,
     } = this.state;
+
+    const {
+      movies,
+      resultsCount,
+    } = this.props;
 
     return(
       <main className={classBlock}>
@@ -87,3 +87,13 @@ export default class MainPage extends React.Component {
     );
   };
 };
+
+export default connect(
+  state => {
+    return {
+      movies: state.movieReducer.movies,
+      resultsCount: state.movieReducer.resultsCount,
+    }
+  },
+  { getMovies }
+)(MainPage)
