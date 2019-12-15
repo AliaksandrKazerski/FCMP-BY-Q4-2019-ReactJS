@@ -40,14 +40,14 @@ export default class ResultsBody extends React.Component {
         return;
       }
       return (
-        <Movie
-          onClick={() => {getFilm(movie.id, movie.genres[0])}}
-          key={movie.id}
-          imgURL={movie.poster_path}
-          releaseText={movie.release_date}
-          genreText={movie.genres}
-          titleText={movie.title}
-        />
+          <Movie
+            onClick={() => {getFilm(movie.id, movie.genres[0])}}
+            key={movie.id}
+            imgURL={movie.poster_path}
+            releaseText={movie.release_date}
+            genreText={movie.genres}
+            titleText={movie.title}
+          />
       );
     })
   };

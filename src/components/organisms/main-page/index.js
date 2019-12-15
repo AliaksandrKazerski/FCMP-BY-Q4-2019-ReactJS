@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
 import SearchPanel from '../../molecules/search-panel';
 import ResultsBody from '../../molecules/results-body';
 import Film from '../../molecules/film';
-import { getMovies, getMovie, getMovieGenre } from '../../../store/thunks/movieThunks';
+import { getMovies, getMovie, getMovieGenre } from '../../../store/thunks/moviesThunks';
 
 import './main-page.scss';
 
@@ -85,7 +86,7 @@ class MainPage extends React.Component {
   };
 };
 
-export default connect(
+export default withRouter(connect(
   state => {
     return {
       movies: state.movieReducer.movies,
@@ -95,4 +96,4 @@ export default connect(
     }
   },
   { getMovies, getMovie, getMovieGenre }
-)(MainPage)
+)(MainPage))
