@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 import SearchPanel from '../../molecules/search-panel';
 import ResultsBody from '../../molecules/results-body';
 import Film from '../../molecules/film';
-import { moviesAPI } from '../../../api';
-import { getMovies } from '../../../store/thunks/movieThunks';
+import { getMovies, getMovie, getMovieGenre } from '../../../store/thunks/movieThunks';
 
 import './main-page.scss';
 
@@ -17,10 +16,14 @@ class MainPage extends React.Component {
 
     this.state = {
       showSearchPanel: true,
-      film: null,
-      filmsGenre: '',
     };
   };
+
+  componentDidUpdate(prevProps) {
+    if (this.props.film !== prevProps.film) {
+      this.setState({ showSearchPanel: false });
+    }
+  }
 
   fetchMovies = (params) => {
     const { getMovies } = this.props;
@@ -28,16 +31,10 @@ class MainPage extends React.Component {
   };
 
   fetchMovieById = (id, genre) => {
-    moviesAPI.getMovie(id)
-      .then(data => {
-        this.setState({film: data, showSearchPanel: false});
-      })
-      .catch(error => this.setState({error}));
-    moviesAPI.getMovies({genre})
-      .then(data => {
-        this.setState({movies: data.data, filmsGenre: genre});
-      })
-      .catch(error => this.setState({error}));
+    const { getMovie, getMovieGenre } = this.props;
+    getMovie(id);
+    getMovies({genre});
+    getMovieGenre(genre);
   };
 
   showSearchPanel = () => {
@@ -48,14 +45,14 @@ class MainPage extends React.Component {
     console.log(this.props);
     const {
       showSearchPanel,
-      film,
-      filmsGenre,
       error,
     } = this.state;
 
     const {
       movies,
       resultsCount,
+      film,
+      filmsGenre,
     } = this.props;
 
     return(
@@ -93,7 +90,9 @@ export default connect(
     return {
       movies: state.movieReducer.movies,
       resultsCount: state.movieReducer.resultsCount,
+      film: state.movieReducer.movie,
+      filmsGenre: state.movieReducer.movieGenre,
     }
   },
-  { getMovies }
+  { getMovies, getMovie, getMovieGenre }
 )(MainPage)
