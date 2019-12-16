@@ -8,8 +8,8 @@ function transformParams(params) {
   }
   if (params.sortBy === 'rating') {
     params.sortBy = 'vote_average';
-    params.sortOrder = 'asc';
   }
+  params.sortOrder = 'desc';
   return params;
 }
 

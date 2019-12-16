@@ -1,7 +1,6 @@
 import { moviesAPI } from '../../api/index';
 import { setMovies, setMovie, setMovieGenre } from '../actions/moviesActions';
 
-
 export const getMovies = (params) => (dispatch) => {
   moviesAPI.getMovies(params)
     .then(data => dispatch(setMovies(data)))

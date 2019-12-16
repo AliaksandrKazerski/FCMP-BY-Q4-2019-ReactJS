@@ -20,7 +20,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
     chunkFilename: '[name].bundle.js',
-    publicPath: 'dist/',
+    publicPath: '/',
   },
   module: {
     rules: [{
@@ -61,6 +61,12 @@ module.exports = {
     },]
   },
   devServer: {
+    historyApiFallback:  {
+      rewrites: [{
+        from: /\/(\d\.)?app\.js(\.map)?/,
+        to: context => context.match[0]
+      }]
+    },
     compress: true,
     port: 9000,
     open: true,

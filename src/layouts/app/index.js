@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import { store } from '../../store/store';
 import MainPage from '../../components/organisms/main-page';
@@ -10,13 +10,13 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <Provider store={store}>
-        <BrowserRouter>
+      <Router>
+        <Provider store={store}>
           <ErrorBoundary>
             <MainPage/>
           </ErrorBoundary>
-        </BrowserRouter>
-      </Provider>
+        </Provider>
+      </Router>
     );
   };
 };
