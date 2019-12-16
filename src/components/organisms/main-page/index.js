@@ -16,8 +16,14 @@ class MainPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { showSearchPanel: this.props.film ? false : true }
+    this.state = { showSearchPanel: true }
   };
+
+  static getDerivedStateFromProps(props) {
+    if (!props.film) {
+      return { showSearchPanel: false }
+    }
+  }
 
   showSearchPanel = () => {
     this.setState({ showSearchPanel: true });
