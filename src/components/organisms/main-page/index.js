@@ -22,22 +22,21 @@ class MainPage extends React.Component {
     getMovies(params);
   };
 
-  fetchMovieById = (id, genre) => {
-    const { getMovie, getMovieGenre, getMovies } = this.props;
+  fetchMovieById = (id) => {
+    const { getMovie } = this.props;
     getMovie(id);
-    getMovies({search: genre, searchBy: 'genres'});
-    getMovieGenre(genre);
     smoothScrollToTop();
   };
 
   render() {
-    console.log(this.props);
     const {
+      getMovies,
       getMovie,
       movies,
       resultsCount,
       film,
       filmsGenre,
+      getMovieGenre,
     } = this.props;
 
     return(
@@ -46,13 +45,15 @@ class MainPage extends React.Component {
           <Switch>
             <Route
               path='/film/:id'
-              component={(props) => {
+              component={() => {
                 return (
                   <>
                    <Film
                       film={film}
+                      movies={movies}
                       getFilm={getMovie}
-                      {...props}
+                      getMovies={getMovies}
+                      getMoviesGenre={getMovieGenre}
                     />
                      <ResultsBody
                        filmsGenre={filmsGenre}
@@ -60,7 +61,6 @@ class MainPage extends React.Component {
                        getFilm={this.fetchMovieById}
                        movies={movies}
                        resultsCount={resultsCount}
-                       {...props}
                      />
                   </>
                 )

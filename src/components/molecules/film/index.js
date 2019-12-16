@@ -18,10 +18,19 @@ const classBlock = 'film';
 class Film extends React.Component {
 
   componentWillMount() {
-    console.log(this.props);
     const { film, getFilm, match: {params} } = this.props;
+
     if (!film) {
       getFilm(params.id);
+    }
+  }
+
+  componentDidMount() {
+    const {film, movies, getMovies, getMoviesGenre} = this.props;
+
+    if (!movies.length && film) {
+      getMovies({search: film.genres[0], searchBy: 'genres'});
+      getMoviesGenre(film.genres[0]);
     }
   }
 
@@ -37,6 +46,7 @@ class Film extends React.Component {
       hideFilm,
       film
     } = this.props;
+
     return (
       <>
         <IconButton
