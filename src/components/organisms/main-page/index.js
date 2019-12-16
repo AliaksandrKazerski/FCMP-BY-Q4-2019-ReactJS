@@ -15,7 +15,13 @@ const classBlock = 'main-page';
 class MainPage extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = { showSearchPanel: this.props.film ? false : true }
   };
+
+  showSearchPanel = () => {
+    this.setState({ showSearchPanel: true });
+  }
 
   fetchMovies = (params) => {
     const { getMovies } = this.props;
@@ -23,6 +29,7 @@ class MainPage extends React.Component {
   };
 
   fetchMovieById = (id) => {
+    this.setState({showSearchPanel: false});
     const { getMovie } = this.props;
     getMovie(id);
     smoothScrollToTop();
@@ -39,10 +46,35 @@ class MainPage extends React.Component {
       getMovieGenre,
     } = this.props;
 
+    const {
+      showSearchPanel,
+    } = this.state;
+
     return(
       <main className={classBlock}>
         <div className={`${classBlock}__content`}>
+          {showSearchPanel && <SearchPanel
+            getSearchParams={this.fetchMovies}
+          />}
           <Switch>
+            <Route
+              exact
+              path='/'
+              component={() => {
+                return (
+                <>
+                  <ResultsBody
+                  filmsGenre={filmsGenre}
+                  film={film}
+                  showResultCount
+                  getFilm={this.fetchMovieById}
+                  movies={movies}
+                  resultsCount={resultsCount}
+                  />
+                </>
+                )
+              }}
+            />
             <Route
               path='/film/:id'
               component={() => {
@@ -54,6 +86,7 @@ class MainPage extends React.Component {
                       getFilm={getMovie}
                       getMovies={getMovies}
                       getMoviesGenre={getMovieGenre}
+                      hideFilm={this.showSearchPanel}
                     />
                      <ResultsBody
                        filmsGenre={filmsGenre}
@@ -63,27 +96,6 @@ class MainPage extends React.Component {
                        resultsCount={resultsCount}
                      />
                   </>
-                )
-              }}
-            />
-            <Route
-              exact
-              path='/'
-              component={() => {
-                return (
-                <>
-                  <SearchPanel
-                    getSearchParams={this.fetchMovies}
-                  />
-                  <ResultsBody
-                  filmsGenre={filmsGenre}
-                  film={film}
-                  showResultCount
-                  getFilm={this.fetchMovieById}
-                  movies={movies}
-                  resultsCount={resultsCount}
-                  />
-                </>
                 )
               }}
             />

@@ -15,7 +15,7 @@ const classBlock = 'search-panel';
 const searchByFilter = [{id: '1', name: 'title'}, {id: '2', name: 'genres'}];
 const searchSortFilter = [{id: '1', name: 'release date'}, {id: '2', name: 'rating'}];
 
-export default class SearchPanel extends React.Component {
+export default class SearchPanel extends React.PureComponent {
   constructor(props) {
     super(props);
 
