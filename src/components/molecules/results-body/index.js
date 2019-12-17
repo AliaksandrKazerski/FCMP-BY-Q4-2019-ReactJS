@@ -66,7 +66,7 @@ export default class ResultsBody extends React.Component {
           {!!movies.length && this.renderAdditionalPanel()}
         </div>
         <div className={`${classBlock}__movies`}>
-          {!!movies.length ? this.renderMovies() : <span className={`${classBlock}__movies--no-found`}> No films found </span>}
+          {!!movies.length ? this.renderMovies() : <span className={`${classBlock}__movies--not-found`}> No films found </span>}
         </div>
         <div className={`${classBlock}__footer`}>
           <IconButton

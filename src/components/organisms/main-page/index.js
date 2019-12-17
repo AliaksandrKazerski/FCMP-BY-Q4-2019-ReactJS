@@ -5,6 +5,7 @@ import {Switch, Route, Redirect} from 'react-router-dom';
 import SearchPanel from '../../molecules/search-panel';
 import ResultsBody from '../../molecules/results-body';
 import Film from '../../molecules/film';
+import ErrorMessage from '../../atoms/error-message';
 import { getMovies, getMovie, getMovieGenre, deleteMovie } from '../../../store/thunks/moviesThunks';
 import { smoothScrollToTop } from "../../../utils/scroll";
 
@@ -15,7 +16,6 @@ const classBlock = 'main-page';
 class MainPage extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = { showSearchPanel: true }
   };
 
@@ -34,10 +34,12 @@ class MainPage extends React.Component {
   }
 
   showSearchPanel = () => {
-    const { deleteMovie } = this.props;
+    const { deleteMovie, film } = this.props;
 
     this.setState({ showSearchPanel: true });
-    deleteMovie();
+    if (film) {
+      deleteMovie();
+    }
   };
 
   fetchMovies = (params) => {
@@ -122,9 +124,17 @@ class MainPage extends React.Component {
             <Route
               exact
               path='/'
-              component={() => <Redirect to='movies'/>}
+              component={() => <Redirect to='/movies'/>}
             />
-            <Route component={() => <span>{'Not Found'}</span>}/>
+            <Route
+              component={() => {
+                return (
+                  <ErrorMessage
+                    message={'404 not found'}
+                  />
+                )
+              }}
+            />
           </Switch>
         </div>
       </main>
