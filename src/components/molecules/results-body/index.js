@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Movie from '../../molecules/movie';
 import ResultCount from '../../atoms/results-count'
@@ -40,14 +41,18 @@ export default class ResultsBody extends React.Component {
         return;
       }
       return (
+        <Link
+          to={`/film/${movie.id}`}
+          key={movie.id}
+        >
           <Movie
-            onClick={() => {getFilm(movie.id, movie.genres[0])}}
-            key={movie.id}
+            onClick={() => {getFilm(movie.id)}}
             imgURL={movie.poster_path}
             releaseText={movie.release_date}
             genreText={movie.genres}
             titleText={movie.title}
           />
+        </Link>
       );
     })
   };
