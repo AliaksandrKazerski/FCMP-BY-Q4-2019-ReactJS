@@ -29,7 +29,7 @@ class Film extends React.Component {
     const {film, movies, getMovies, getMoviesGenre} = this.props;
 
     if (!movies.length && film) {
-      getMovies({search: film.genres[0], searchBy: 'genres'});
+      getMovies({params: {search: film.genres[0], searchBy: 'genres'}, config: 'byGenres'});
       getMoviesGenre(film.genres[0]);
     }
   }
@@ -71,7 +71,7 @@ class Film extends React.Component {
           <ItemDescription
             descriptionText={film.overview}
           />
-          <Link to='/'>
+          <Link to='/movies'>
             <IconButton
               logo={SearchLogo}
               onClick={hideFilm}

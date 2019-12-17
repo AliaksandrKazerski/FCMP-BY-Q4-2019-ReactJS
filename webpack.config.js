@@ -61,15 +61,11 @@ module.exports = {
     },]
   },
   devServer: {
-    historyApiFallback:  {
-      rewrites: [{
-        from: /\/(\d\.)?app\.js(\.map)?/,
-        to: context => context.match[0]
-      }]
-    },
+    historyApiFallback: true,
     compress: true,
     port: 9000,
     open: true,
+    openPage: 'movies',
   },
   plugins: [
     new CleanWebpackPlugin(),

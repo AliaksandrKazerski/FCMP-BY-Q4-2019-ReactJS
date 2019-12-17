@@ -12,6 +12,7 @@ export default class IconButton extends React.PureComponent {
           src={logo}
           className={classBlock}
           onClick={onClick}
+          alt={'logo'}
         />
       </>
     );

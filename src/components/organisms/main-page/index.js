@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {Switch, Route} from 'react-router-dom';
+import {Switch, Route, Redirect} from 'react-router-dom';
 
 import SearchPanel from '../../molecules/search-panel';
 import ResultsBody from '../../molecules/results-body';
 import Film from '../../molecules/film';
-import { getMovies, getMovie, getMovieGenre } from '../../../store/thunks/moviesThunks';
+import { getMovies, getMovie, getMovieGenre, deleteMovie } from '../../../store/thunks/moviesThunks';
 import { smoothScrollToTop } from "../../../utils/scroll";
 
 import './main-page.scss';
@@ -20,28 +20,42 @@ class MainPage extends React.Component {
   };
 
   static getDerivedStateFromProps(props) {
-    if (!props.film) {
+    if (props.film) {
       return { showSearchPanel: false }
+    }
+    return null;
+  }
+
+  componentDidMount() {
+    const { getMovies, routes, movies } = this.props;
+    if (routes.search && movies) {
+      getMovies(routes.search);
     }
   }
 
   showSearchPanel = () => {
+    const { deleteMovie } = this.props;
+
     this.setState({ showSearchPanel: true });
-  }
+    deleteMovie();
+  };
 
   fetchMovies = (params) => {
     const { getMovies } = this.props;
+
     getMovies(params);
   };
 
   fetchMovieById = (id) => {
-    this.setState({showSearchPanel: false});
     const { getMovie } = this.props;
+
+    this.setState({showSearchPanel: false});
     getMovie(id);
     smoothScrollToTop();
   };
 
   render() {
+    console.log(this.props);
     const {
       getMovies,
       getMovie,
@@ -65,7 +79,7 @@ class MainPage extends React.Component {
           <Switch>
             <Route
               exact
-              path='/'
+              path='/movies'
               component={() => {
                 return (
                 <>
@@ -105,6 +119,11 @@ class MainPage extends React.Component {
                 )
               }}
             />
+            <Route
+              exact
+              path='/'
+              component={() => <Redirect to='movies'/>}
+            />
             <Route component={() => <span>{'Not Found'}</span>}/>
           </Switch>
         </div>
@@ -120,7 +139,8 @@ export default connect(
       resultsCount: state.movieReducer.resultsCount,
       film: state.movieReducer.movie,
       filmsGenre: state.movieReducer.movieGenre,
+      routes: state.routing.locationBeforeTransitions,
     }
   },
-  { getMovies, getMovie, getMovieGenre }
+  { getMovies, getMovie, getMovieGenre, deleteMovie }
 )(MainPage)
