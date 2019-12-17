@@ -16,21 +16,27 @@ const classBlock = 'main-page';
 class MainPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { showSearchPanel: true }
-  };
-
-  static getDerivedStateFromProps(props) {
-    if (props.film) {
-      return { showSearchPanel: false }
+    this.state = { 
+      showSearchPanel: true,
+      filmId: null,
     }
-    return null;
-  }
+  };
 
   componentDidMount() {
     const { getMovies, routes, movies } = this.props;
     if (routes.search && movies) {
       getMovies(routes.search);
     }
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    const { film, getMovieGenre, getMovies, movies } = props;
+    if (film && film.id !== state.filmId) {
+      getMovies({params: {search: film.genres[0], searchBy: 'genres'}, config: 'byGenres'});
+      getMovieGenre(film.genres[0]);
+      return { showSearchPanel: false, filmId: film.id }
+    }
+    return null;
   }
 
   showSearchPanel = () => {
@@ -57,7 +63,6 @@ class MainPage extends React.Component {
   };
 
   render() {
-    console.log(this.props);
     const {
       getMovies,
       getMovie,
@@ -107,7 +112,7 @@ class MainPage extends React.Component {
                       movies={movies}
                       getFilm={getMovie}
                       getMovies={getMovies}
-                      getMoviesGenre={getMovieGenre}
+                      getMovieGenre={getMovieGenre}
                       hideFilm={this.showSearchPanel}
                     />
                      <ResultsBody

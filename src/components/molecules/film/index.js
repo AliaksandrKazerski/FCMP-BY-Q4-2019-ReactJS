@@ -25,15 +25,6 @@ class Film extends React.Component {
     }
   }
 
-  componentDidMount() {
-    const {film, movies, getMovies, getMoviesGenre} = this.props;
-
-    if (!movies.length && film) {
-      getMovies({params: {search: film.genres[0], searchBy: 'genres'}, config: 'byGenres'});
-      getMoviesGenre(film.genres[0]);
-    }
-  }
-
   renderReleaseDateAndRunTime = (data, runTime) => {
     return <ItemReleaseDateAndRunTime
       releaseText={data}
