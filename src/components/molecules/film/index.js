@@ -16,13 +16,19 @@ import './film.scss';
 const classBlock = 'film';
 
 class Film extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {}
+  }
 
-  componentWillMount() {
-    const { film, getFilm, match: {params} } = this.props;
+  static getDerivedStateFromProps(props) {
+    const { film, getFilm, match: {params} } = props;
 
     if (!film) {
       getFilm(params.id);
     }
+
+    return null;
   }
 
   renderReleaseDateAndRunTime = (data, runTime) => {

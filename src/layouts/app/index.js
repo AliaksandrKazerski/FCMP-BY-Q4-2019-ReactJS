@@ -8,13 +8,13 @@ import { store } from '../../store/store';
 import MainPage from '../../components/organisms/main-page';
 import ErrorBoundary from '../../components/atoms/error-boundary';
 
-const history = syncHistoryWithStore(browserHistory, store);
+syncHistoryWithStore(browserHistory, store);
 
 export default class App extends React.Component {
 
   render() {
     return (
-      <Router history={history}>
+      <Router>
         <Provider store={store}>
           <ErrorBoundary>
             <MainPage/>

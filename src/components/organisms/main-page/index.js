@@ -16,7 +16,7 @@ const classBlock = 'main-page';
 class MainPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       showSearchPanel: true,
       filmId: null,
     }
@@ -30,7 +30,7 @@ class MainPage extends React.Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    const { film, getMovieGenre, getMovies, movies } = props;
+    const { film, getMovieGenre, getMovies } = props;
     if (film && film.id !== state.filmId) {
       getMovies({params: {search: film.genres[0], searchBy: 'genres'}, config: 'byGenres'});
       getMovieGenre(film.genres[0]);
