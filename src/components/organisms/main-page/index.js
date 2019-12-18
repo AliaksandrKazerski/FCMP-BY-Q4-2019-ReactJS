@@ -62,6 +62,12 @@ class MainPage extends React.Component {
     smoothScrollToTop();
   };
 
+  callbackError = () => {
+    if (this.state.showSearchPanel) {
+      this.setState({showSearchPanel: false});
+    }
+  };
+
   render() {
     const {
       getMovies,
@@ -135,6 +141,7 @@ class MainPage extends React.Component {
               component={() => {
                 return (
                   <ErrorMessage
+                    callback={this.callbackError}
                     message={'404 not found'}
                   />
                 )
