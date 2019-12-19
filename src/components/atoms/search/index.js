@@ -15,21 +15,22 @@ export default class Search extends React.PureComponent {
 
 
   onChange = (e) => {
-    const  { value }  = e.target
+    const  { value }  = e.target;
     const { getValue } = this.props;
 
     this.setState({ inputValue: value }, () => {getValue(this.state.inputValue)});
-  }
+  };
 
   render() {
-    const { defaultValue } = this.props;
+    const { searchValue } = this.props;
+
     return(
       <>
         <input
           type={'search'}
           className={classBlock}
           onChange={this.onChange}
-          value={defaultValue}
+          value={searchValue}
           placeholder={DEFAULT_PLACEHOLDER}
         >
         </input>

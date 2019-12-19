@@ -6,7 +6,7 @@ import SearchPanel from '../../molecules/search-panel';
 import ResultsBody from '../../molecules/results-body';
 import Film from '../../molecules/film';
 import ErrorMessage from '../../atoms/error-message';
-import { getMovies, getMovie, getMovieGenre, deleteMovie } from '../../../store/thunks/moviesThunks';
+import { getMovies, getMovie, getMovieGenre, deleteMovie, getSearchParams } from '../../../store/thunks/moviesThunks';
 import { smoothScrollToTop } from "../../../utils/scroll";
 
 import './main-page.scss';
@@ -52,6 +52,7 @@ class MainPage extends React.Component {
     const { getMovies } = this.props;
 
     getMovies(params);
+
   };
 
   fetchMovieById = (id) => {
@@ -77,6 +78,8 @@ class MainPage extends React.Component {
       film,
       filmsGenre,
       getMovieGenre,
+      searchParams,
+      getSearchParams,
     } = this.props;
 
     const {
@@ -87,6 +90,8 @@ class MainPage extends React.Component {
       <main className={classBlock}>
         <div className={`${classBlock}__content`}>
           {showSearchPanel && <SearchPanel
+            searchParams={searchParams}
+            setSearchParams={getSearchParams}
             getSearchParams={this.fetchMovies}
           />}
           <Switch>
@@ -162,7 +167,8 @@ export default connect(
       film: state.movieReducer.movie,
       filmsGenre: state.movieReducer.movieGenre,
       routes: state.routing.locationBeforeTransitions,
+      searchParams: state.searchReducer,
     }
   },
-  { getMovies, getMovie, getMovieGenre, deleteMovie }
+  { getMovies, getMovie, getMovieGenre, deleteMovie, getSearchParams}
 )(MainPage)

@@ -1,5 +1,6 @@
 import { moviesAPI } from '../../api/index';
 import { setMovies, setMovie, setMovieGenre } from '../actions/moviesActions';
+import { setSearchParams } from '../actions/searchActions';
 
 export const getMovies = (params) => (dispatch) => {
   moviesAPI.getMovies(params, dispatch)
@@ -19,4 +20,8 @@ export const getMovieGenre = (genre) => (dispatch) => {
 
 export const deleteMovie = () => (dispatch) => {
   dispatch(setMovie(null));
+};
+
+export const getSearchParams = (param) => (dispatch) => {
+  dispatch(setSearchParams(param));
 };

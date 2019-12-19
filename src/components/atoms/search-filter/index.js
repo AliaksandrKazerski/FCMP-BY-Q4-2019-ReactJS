@@ -17,24 +17,27 @@ const getAdditionalClass = (pos, filters) => {
   }
 };
 
-export default class SearchFilter extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      activeFilter: this.props.activeFilter
-    }
+const transformFilter = (filter) => {
+  if (filter === 'release_date') {
+    filter = 'release date';
   }
+  if (filter === 'vote_average') {
+    filter = 'rating';
+  }
+  return filter;
+};
+
+export default class SearchFilter extends React.Component {
 
   changeActiveFilter = (e) => {
     const { value } = e.target;
     const { getActiveFilter } = this.props;
 
-    this.setState({ activeFilter: getTextToLowerCase(value) }, () => {getActiveFilter(this.state.activeFilter)});
-  }
+    getActiveFilter(getTextToLowerCase(value));
+  };
 
   renderFilters = (filters) => {
-    const { activeFilter } = this.state;
+    const { activeFilter } = this.props;
 
     return filters.map((filter, pos, filters) => {
       const additionalClass = getAdditionalClass(pos, filters);
@@ -43,7 +46,7 @@ export default class SearchFilter extends React.Component {
         additionalClass={additionalClass}
         onClick={this.changeActiveFilter}
         defaultValue={getTextToUpperCase(filter.name)}
-        active={filter.name === activeFilter}
+        active={filter.name === transformFilter(activeFilter)}
       />
     });
   };

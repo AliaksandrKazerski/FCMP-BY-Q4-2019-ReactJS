@@ -1,6 +1,8 @@
 import queryString from 'query-string';
 import { push } from 'react-router-redux';
 
+import { setSearchParams } from '../store/actions/searchActions';
+
 const DEFAULT_URL = `https://reactjs-cdp.herokuapp.com/movies`;
 
 function transformParams(params) {
@@ -17,6 +19,8 @@ function transformParams(params) {
 export const moviesAPI = {
   getMovies(params, dispatch) {
     if (typeof params === 'string') {
+      const parsedString = queryString.parse(params);
+      dispatch(setSearchParams(parsedString));
       return fetch(`${DEFAULT_URL}${params}`)
         .then(res => res.json());
     }

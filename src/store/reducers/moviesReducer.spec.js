@@ -7,7 +7,6 @@ describe('movieReducer should get right state according to actions', () => {
       movies: 'data',
       resultsCount: 'data',
     };
-    console.log(movieReducer(null, mockAction));
     expect(movieReducer(null, mockAction)).toMatchObject(mockState);
   });
 

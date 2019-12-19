@@ -6,9 +6,10 @@ import { browserHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux'
 
 import movieReducer from './reducers/moviesReducer';
+import searchReducer from './reducers/searchReducer';
 
 const middleware = routerMiddleware(browserHistory);
 
-const reducer = combineReducers({movieReducer, routing: routerReducer});
+const reducer = combineReducers({movieReducer, searchReducer, routing: routerReducer});
 
 export const store = createStore(reducer, applyMiddleware(thunk, logger, middleware));

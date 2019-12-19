@@ -16,35 +16,29 @@ const searchByFilter = [{id: '1', name: 'title'}, {id: '2', name: 'genres'}];
 const searchSortFilter = [{id: '1', name: 'release date'}, {id: '2', name: 'rating'}];
 
 export default class SearchPanel extends React.PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      search: '',
-      searchBy: 'title',
-      sortBy: 'release date',
-    }
-  }
 
   prepareSearchParams = () => {
-    const { getSearchParams } = this.props;
-    getSearchParams(this.state);
-  }
+    const { getSearchParams, searchParams } = this.props;
+    getSearchParams(searchParams);
+  };
 
   changeSearch = (value) => {
-    this.setState({ search: value });
-  }
+    const { setSearchParams } = this.props;
+    setSearchParams({search: value});
+  };
 
   changeSearchBy = (filter) => {
-    this.setState({ searchBy: filter });
-  }
+    const { setSearchParams } = this.props;
+    setSearchParams({searchBy: filter});
+  };
 
   changeSortBy = (filter) => {
-    this.setState({ sortBy: filter });
-  }
+    const { setSearchParams } = this.props;
+    setSearchParams({sortBy: filter});
+  };
 
   render() {
-    const { search, searchBy, sortBy } = this.state;
+    const { search, searchBy, sortBy } = this.props.searchParams;
 
     return(
       <div className={classBlock}>
