@@ -7,6 +7,7 @@ import ItemTitle from '../../atoms/item-title/inex';
 import ItemRating from '../../atoms/item-rating';
 import ItemDescription from '../../atoms/item-description';
 import IconButton from '../../atoms/icon-button';
+import { smoothScrollToTop } from '../../../utils/scroll';
 
 import SearchLogo from '../../../../img/search-1.jpg';
 import NetflixLogo from '../../../../img/netflix2.png';
@@ -24,8 +25,10 @@ class Film extends React.Component {
   static getDerivedStateFromProps(props) {
     const { film, getFilm, match: {params} } = props;
 
-    if (!film) {
+
+    if (!film || film.id !== +params.id) {
       getFilm(params.id);
+      smoothScrollToTop();
     }
 
     return null;

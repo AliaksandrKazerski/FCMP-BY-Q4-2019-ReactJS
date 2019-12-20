@@ -35,7 +35,7 @@ export default class ResultsBody extends React.Component {
   };
 
   renderMovies = () => {
-    const { movies, getFilm, film } = this.props;
+    const { movies, film } = this.props;
     return movies.map(movie => {
       if (film && film.id === movie.id) {
         return;
@@ -46,7 +46,6 @@ export default class ResultsBody extends React.Component {
           key={movie.id}
         >
           <Movie
-            onClick={() => {getFilm(movie.id)}}
             imgURL={movie.poster_path}
             releaseText={movie.release_date}
             genreText={movie.genres}

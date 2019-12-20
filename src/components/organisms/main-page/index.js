@@ -7,7 +7,6 @@ import ResultsBody from '../../molecules/results-body';
 import Film from '../../molecules/film';
 import ErrorMessage from '../../atoms/error-message';
 import { getMovies, getMovie, getMovieGenre, getSearchParams } from '../../../store/thunks/moviesThunks';
-import { smoothScrollToTop } from "../../../utils/scroll";
 
 import './main-page.scss';
 
@@ -51,13 +50,6 @@ class MainPage extends React.Component {
 
   };
 
-  fetchMovieById = (id) => {
-    const { getMovie } = this.props;
-
-    getMovie(id);
-    smoothScrollToTop();
-  };
-
   render() {
     const {
       getMovies,
@@ -90,7 +82,6 @@ class MainPage extends React.Component {
                   filmsGenre={filmsGenre}
                   film={film}
                   showResultCount
-                  getFilm={this.fetchMovieById}
                   movies={movies}
                   resultsCount={resultsCount}
                   />
@@ -113,7 +104,6 @@ class MainPage extends React.Component {
                      <ResultsBody
                        filmsGenre={filmsGenre}
                        film={film}
-                       getFilm={this.fetchMovieById}
                        movies={movies}
                        resultsCount={resultsCount}
                      />

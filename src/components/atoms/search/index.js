@@ -13,7 +13,6 @@ export default class Search extends React.PureComponent {
     }
   }
 
-
   onChange = (e) => {
     const  { value }  = e.target;
     const { getValue } = this.props;
