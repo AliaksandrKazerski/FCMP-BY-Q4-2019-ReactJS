@@ -7,11 +7,6 @@ const classBlock = 'error-message';
 
 export default class ErrorMessage extends React.PureComponent {
 
-  componentDidMount() {
-    this.props.callback();
-  }
-
-
   render() {
     const { message } = this.props;
 
