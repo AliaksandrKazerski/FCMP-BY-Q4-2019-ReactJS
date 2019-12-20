@@ -18,10 +18,6 @@ export const getMovieGenre = (genre) => (dispatch) => {
   dispatch(setMovieGenre(genre));
 };
 
-export const deleteMovie = () => (dispatch) => {
-  dispatch(setMovie(null));
-};
-
 export const getSearchParams = (param) => (dispatch) => {
   dispatch(setSearchParams(param));
 };

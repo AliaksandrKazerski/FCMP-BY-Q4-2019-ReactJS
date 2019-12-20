@@ -40,7 +40,6 @@ class Film extends React.Component {
 
   renderFilmContent = () => {
     const {
-      hideFilm,
       film
     } = this.props;
 
@@ -71,7 +70,6 @@ class Film extends React.Component {
           <Link to='/movies'>
             <IconButton
               logo={SearchLogo}
-              onClick={hideFilm}
             />
           </Link>
         </div>
