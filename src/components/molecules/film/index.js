@@ -24,7 +24,7 @@ class Film extends React.Component {
   static getDerivedStateFromProps(props) {
     const { film, getFilm, match: {params} } = props;
 
-    if (!film) {
+    if (!film || film.id !== +params.id) {
       getFilm(params.id);
     }
 
