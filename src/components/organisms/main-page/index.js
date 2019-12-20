@@ -19,6 +19,7 @@ class MainPage extends React.Component {
     this.state = {
       showSearchPanel: true,
       filmId: null,
+      query: this.props.routes.search,
     }
   };
 
@@ -30,13 +31,18 @@ class MainPage extends React.Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    const { film, getMovieGenre, getMovies } = props;
+    const { film, getMovieGenre, getMovies, routes,  } = props;
+    const { query } = state;
+    if (routes.search !== query) {
+      getMovies(routes.search);
+      return {query: routes.search}
+    }
     if (film && film.id !== state.filmId) {
       getMovies({params: {search: film.genres[0], searchBy: 'genres'}, config: 'byGenres'});
       getMovieGenre(film.genres[0]);
-      return { showSearchPanel: false, filmId: film.id }
+      return { showSearchPanel: false, filmId: film.id, query: routes.search }
     }
-    return null;
+    return {query: routes.search};
   }
 
   showSearchPanel = () => {
@@ -170,5 +176,5 @@ export default connect(
       searchParams: state.searchReducer,
     }
   },
-  { getMovies, getMovie, getMovieGenre, deleteMovie, getSearchParams}
+  { getMovies, getMovie, getMovieGenre, deleteMovie, getSearchParams }
 )(MainPage)
