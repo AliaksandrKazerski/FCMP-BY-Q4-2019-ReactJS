@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import SearchPanel from '../../molecules/search-panel';
 import ResultsBody from '../../molecules/results-body';
+
 import { getMovies, getMovie, getMovieGenre, getSearchParams } from '../../../store/thunks/moviesThunks';
 import { smoothScrollToTop } from "../../../utils/scroll";
 
@@ -11,8 +12,8 @@ const classBlock = 'search-panel-with-result-body';
 class SearchPanelWithResultBody extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      filmId: null,
       query: this.props.routes.search,
     }
   };
@@ -25,16 +26,11 @@ class SearchPanelWithResultBody extends React.Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    const { film, getMovieGenre, getMovies, routes,  } = props;
+    const { getMovies, routes } = props;
     const { query } = state;
     if (routes.search !== query) {
       getMovies(routes.search);
       return {query: routes.search};
-    }
-    if (film && film.id !== state.filmId) {
-      getMovies({params: {search: film.genres[0], searchBy: 'genres'}, config: 'byGenres'});
-      getMovieGenre(film.genres[0]);
-      return { filmId: film.id, query: routes.search }
     }
     return {query: routes.search};
   }
