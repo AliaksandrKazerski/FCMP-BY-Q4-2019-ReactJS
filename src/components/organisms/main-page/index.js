@@ -53,7 +53,7 @@ class MainPage extends React.Component {
       deleteMovie();
     }
   };
-
+ 
   fetchMovies = (params) => {
     const { getMovies } = this.props;
 
