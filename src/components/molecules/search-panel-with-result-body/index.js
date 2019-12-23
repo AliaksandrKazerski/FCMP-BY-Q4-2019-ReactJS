@@ -21,10 +21,12 @@ class SearchPanelWithResultBody extends React.Component {
 
   componentDidMount() {
     const { getMovies, routes, movies } = this.props;
-    
+
     if (routes.search && !movies.length) {
       getMovies(routes.search);
     }
+    
+    smoothScrollToTop();
   }
 
   static getDerivedStateFromProps(props, state) {
