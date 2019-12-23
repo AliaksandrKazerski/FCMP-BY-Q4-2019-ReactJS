@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
 import ResultsBody from '../../molecules/results-body';
 import Film from '../../molecules/film';
@@ -15,25 +16,29 @@ class FilmWithResultRoby extends React.Component {
 
     this.state = {
       filmId: null,
+      isFilmGenre: false,
     }
   };
 
   static getDerivedStateFromProps(props, state) {
-    const { film, getMovieGenre, getMovies } = props;
+    const { film, getMovieGenre, getMovies, getMovie, match: {params : { id: movieId } } } = props;
 
-    if (film && film.id !== state.filmId) {
+    if (movieId !== state.filmId) {
+      getMovie(movieId);
+      return {filmId: movieId, isFilmGenre: false};
+    }
+
+    if (film && !state.isFilmGenre) {
       getMovies({params: {search: film.genres[0], searchBy: 'genres'}, config: 'byGenres'});
       getMovieGenre(film.genres[0]);
-      smoothScrollToTop();
-      return { filmId: film.id }
+      return {isFilmGenre: true};
     }
+
+    smoothScrollToTop();
     return null;
   }
 
-  fetchMovieById = (id) => {
-    const { getMovie } = this.props;
-
-    getMovie(id);
+  fetchMovieById = () => {
     smoothScrollToTop();
   };
 
@@ -69,7 +74,7 @@ class FilmWithResultRoby extends React.Component {
   };
 }
 
-export default connect(
+export default withRouter(connect(
   state => {
     return {
       movies: state.movieReducer.movies,
@@ -80,4 +85,4 @@ export default connect(
     }
   },
   { getMovies, getMovie, getMovieGenre, deleteMovie }
-)(FilmWithResultRoby)
+)(FilmWithResultRoby))

@@ -46,7 +46,7 @@ export default class ResultsBody extends React.Component {
           key={movie.id}
         >
           <Movie
-            onClick={() => {getFilm(movie.id)}}
+            onClick={getFilm}
             imgURL={movie.poster_path}
             releaseText={movie.release_date}
             genreText={movie.genres}

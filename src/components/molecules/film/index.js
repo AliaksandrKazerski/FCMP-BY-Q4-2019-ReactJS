@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import ItemImage from '../../atoms/item-image/index';
 import ItemReleaseDateAndRunTime from '../../atoms/item-release-date';
@@ -15,21 +15,7 @@ import './film.scss';
 
 const classBlock = 'film';
 
-class Film extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {}
-  }
-
-  static getDerivedStateFromProps(props) {
-    const { film, getFilm, match: {params} } = props;
-
-    if (!film || film.id !== +params.id) {
-      getFilm(params.id);
-    }
-
-    return null;
-  }
+export default class Film extends React.Component {
 
   renderReleaseDateAndRunTime = (data, runTime) => {
     return <ItemReleaseDateAndRunTime
@@ -87,5 +73,3 @@ class Film extends React.Component {
     );
   };
 }
-
-export default withRouter(Film)

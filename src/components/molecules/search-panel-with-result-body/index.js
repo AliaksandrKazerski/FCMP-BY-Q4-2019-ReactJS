@@ -15,37 +15,38 @@ class SearchPanelWithResultBody extends React.Component {
 
     this.state = {
       query: this.props.routes.search,
+      isFetchMovies: false,
     }
   };
 
   componentDidMount() {
     const { getMovies, routes, movies } = this.props;
-    if (routes.search && movies) {
+    
+    if (routes.search && !movies.length) {
       getMovies(routes.search);
     }
   }
 
   static getDerivedStateFromProps(props, state) {
     const { getMovies, routes } = props;
-    const { query } = state;
-    if (routes.search !== query) {
+    const { query, isFetchMovies } = state;
+
+    if (routes.search !== query && !isFetchMovies) {
       getMovies(routes.search);
       return {query: routes.search};
     }
-    return {query: routes.search};
+    return {query: routes.search, isFetchMovies: false};
   }
 
   fetchMovies = (params) => {
     const { getMovies } = this.props;
 
     getMovies(params);
+    this.setState({ isFetchMovies: true })
 
   };
 
-  fetchMovieById = (id) => {
-    const { getMovie } = this.props;
-
-    getMovie(id);
+  fetchMovieById = () => {
     smoothScrollToTop();
   };
 
