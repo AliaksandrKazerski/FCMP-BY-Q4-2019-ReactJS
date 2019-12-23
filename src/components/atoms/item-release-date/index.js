@@ -6,7 +6,7 @@ import './item-release-date.scss';
 
 const classBlock = 'item-release-date';
 
-export default class ItemReleaseDateAndRunTime extends React.Component {
+export default class ItemReleaseDateAndRunTime extends React.PureComponent{
   render() {
     const { releaseText, runTime } = this.props;
 

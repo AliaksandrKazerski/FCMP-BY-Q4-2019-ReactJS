@@ -3,13 +3,13 @@ import './item-rating.scss';
 
 const classBlock = 'item-rating';
 
-export default class ItemRating extends React.Component {
+export default class ItemRating extends React.PureComponent {
   render() {
     const { ratingText } = this.props;
 
     return(
       <>
-        <div 
+        <div
           className={classBlock}
         >
           <span className={`${classBlock}__text`}>{ratingText}</span>

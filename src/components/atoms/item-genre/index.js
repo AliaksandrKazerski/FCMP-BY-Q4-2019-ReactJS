@@ -5,13 +5,13 @@ import { getTextFromArray } from '../../../utils/transform-text';
 
 const classBlock = 'item-genre';
 
-export default class ItemGenre extends React.Component {
+export default class ItemGenre extends React.PureComponent {
   render() {
     const { genreText } = this.props;
 
     return(
       <>
-      <span 
+      <span
         className={classBlock}
       >
         {getTextFromArray(genreText)}

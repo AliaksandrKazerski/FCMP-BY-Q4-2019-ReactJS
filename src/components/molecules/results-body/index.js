@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Movie from '../../molecules/movie';
 import ResultCount from '../../atoms/results-count'
@@ -40,14 +41,18 @@ export default class ResultsBody extends React.Component {
         return;
       }
       return (
-        <Movie
-          onClick={() => {getFilm(movie.id, movie.genres[0])}}
+        <Link
+          to={`/film/${movie.id}`}
           key={movie.id}
-          imgURL={movie.poster_path}
-          releaseText={movie.release_date}
-          genreText={movie.genres}
-          titleText={movie.title}
-        />
+        >
+          <Movie
+            onClick={getFilm}
+            imgURL={movie.poster_path}
+            releaseText={movie.release_date}
+            genreText={movie.genres}
+            titleText={movie.title}
+          />
+        </Link>
       );
     })
   };
@@ -61,7 +66,7 @@ export default class ResultsBody extends React.Component {
           {!!movies.length && this.renderAdditionalPanel()}
         </div>
         <div className={`${classBlock}__movies`}>
-          {!!movies.length ? this.renderMovies() : <span className={`${classBlock}__movies--no-found`}> No films found </span>}
+          {!!movies.length ? this.renderMovies() : <span className={`${classBlock}__movies--not-found`}> No films found </span>}
         </div>
         <div className={`${classBlock}__footer`}>
           <IconButton

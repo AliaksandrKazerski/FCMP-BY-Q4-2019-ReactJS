@@ -6,7 +6,7 @@ import './search-button.scss';
 
 const classBlock = 'search-button';
 
-export default class SearchButton extends React.Component {
+export default class SearchButton extends React.PureComponent {
   render() {
     const { defaultValue, onClick, active, additionalClass } = this.props;
 

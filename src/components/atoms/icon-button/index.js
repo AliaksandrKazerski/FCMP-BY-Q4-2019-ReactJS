@@ -2,7 +2,7 @@ import React from 'react';
 
 const classBlock = 'icon-button';
 
-export default class IconButton extends React.Component {
+export default class IconButton extends React.PureComponent {
   render() {
     const { onClick, logo } = this.props;
 
@@ -12,6 +12,7 @@ export default class IconButton extends React.Component {
           src={logo}
           className={classBlock}
           onClick={onClick}
+          alt={'logo'}
         />
       </>
     );

@@ -17,10 +17,10 @@ module.exports = {
     extensions: ['*', '.js', '.jsx']
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, '/dist'),
     filename: 'bundle.js',
     chunkFilename: '[name].bundle.js',
-    publicPath: 'dist/',
+    publicPath: '/',
   },
   module: {
     rules: [{
@@ -61,9 +61,11 @@ module.exports = {
     },]
   },
   devServer: {
+    historyApiFallback: true,
     compress: true,
     port: 9000,
     open: true,
+    openPage: 'movies',
   },
   plugins: [
     new CleanWebpackPlugin(),

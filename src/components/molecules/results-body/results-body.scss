@@ -26,7 +26,7 @@
     min-height: 400px;
     background-color: #232323;
 
-    &--no-found {
+    &--not-found {
       @include font-montserrat(50px, #ffffff);
       line-height: 400px;
       margin: 0 auto;

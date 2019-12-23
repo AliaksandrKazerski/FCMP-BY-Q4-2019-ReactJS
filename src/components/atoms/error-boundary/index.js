@@ -4,7 +4,7 @@ import './error-boundary.scss';
 
 const classBlock = 'error-boundary';
 
-export default class ErrorBoundary extends React.Component {
+export default class ErrorBoundary extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = { hasError: false };

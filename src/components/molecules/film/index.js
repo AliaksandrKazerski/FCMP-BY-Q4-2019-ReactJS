@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 import ItemImage from '../../atoms/item-image/index';
 import ItemReleaseDateAndRunTime from '../../atoms/item-release-date';
@@ -23,51 +24,52 @@ export default class Film extends React.Component {
     />
   };
 
-  render() {
+  renderFilmContent = () => {
     const {
-      hideFilm,
-      film: {
-        poster_path,
-        title,
-        release_date,
-        vote_average,
-        overview,
-        runtime,
-      }
-     } = this.props;
+      film
+    } = this.props;
 
-    return(
-      <div
-        className={classBlock}
-      >
+    return (
+      <>
         <IconButton
           logo={NetflixLogo}
         />
         <ItemImage
-          imgURL={poster_path}
+          imgURL={film.poster_path}
         />
         <div className={`${classBlock}__overview`}>
           <div className={`${classBlock}__overview--title-and-raiting`}>
             <ItemTitle
-              titleText={title}
+              titleText={film.title}
             />
             <ItemRating
-              ratingText={vote_average}
+              ratingText={film.vote_average}
             />
           </div>
           <div className={`${classBlock}__overview--release-and-runtime`}>
-            {release_date && this.renderReleaseDateAndRunTime(release_date)}
-            {runtime && this.renderReleaseDateAndRunTime(runtime, true)}
+            {film.release_date && this.renderReleaseDateAndRunTime(film.release_date)}
+            {film.runtime && this.renderReleaseDateAndRunTime(film.runtime, true)}
           </div>
           <ItemDescription
-            descriptionText={overview}
+            descriptionText={film.overview}
           />
-          <IconButton
-            logo={SearchLogo}
-            onClick={hideFilm}
-          />
+          <Link to='/movies'>
+            <IconButton
+              logo={SearchLogo}
+            />
+          </Link>
         </div>
+      </>
+    );
+  };
+
+  render() {
+    return (
+      <div
+        className={classBlock}
+      >
+        {this.props.film ? this.renderFilmContent() : <span>{'Download'}</span>}
       </div>
     );
   };
-};
+}
