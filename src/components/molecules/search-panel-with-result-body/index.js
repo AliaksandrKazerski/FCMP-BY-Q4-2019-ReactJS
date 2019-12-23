@@ -25,7 +25,7 @@ class SearchPanelWithResultBody extends React.Component {
     if (routes.search && !movies.length) {
       getMovies(routes.search);
     }
-    
+
     smoothScrollToTop();
   }
 
