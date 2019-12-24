@@ -5,6 +5,9 @@ import Movie from '../../molecules/movie';
 import ResultCount from '../../atoms/results-count'
 import ItemGenre from '../../atoms/item-genre';
 import IconButton from '../../atoms/icon-button';
+import Pagination from '../pagination';
+
+import { getOffset } from '../../../utils/pagination';
 
 import Logo from '../../../../img/netflix2.png'
 
@@ -13,9 +16,16 @@ import './results-body.scss';
 const classBlock = 'results-body';
 
 export default class ResultsBody extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      activePage: null,
+    }
+  }
 
   renderAdditionalPanel = () => {
-    const { showResultCount, resultsCount, filmsGenre } = this.props
+    const { showResultCount, resultsCount, filmsGenre } = this.props;
     return (
       <div className={`${classBlock}__additional-panel--result-count`}>
         {showResultCount ?
@@ -57,8 +67,16 @@ export default class ResultsBody extends React.Component {
     })
   };
 
+  changePage = (activePage, limit) => {
+    const { setPageParams, setActivePage } = this.props;
+    const offset = getOffset(activePage, limit);
+
+    setPageParams({ offset });
+    setActivePage(activePage);
+  };
+
   render() {
-    const { movies } = this.props;
+    const { movies, paginationParams, resultsCount } = this.props;
 
     return(
       <div className={classBlock}>
@@ -73,6 +91,12 @@ export default class ResultsBody extends React.Component {
             logo={Logo}
           />
         </div>
+        <Pagination
+          count={resultsCount}
+          limit={paginationParams.limit}
+          activePage={paginationParams.activePage}
+          changePage={this.changePage}
+        />
       </div>
     );
   };

@@ -6,6 +6,8 @@ import ResultsBody from '../../molecules/results-body';
 import Film from '../../molecules/film';
 
 import { getMovies, getMovie, getMovieGenre, deleteMovie } from '../../../store/thunks/moviesThunks';
+import { getSearchParams } from '../../../store/thunks/searchThunks';
+import { getActivePage } from '../../../store/thunks/paginationThunks';
 import { smoothScrollToTop } from '../../../utils/scroll';
 
 const classBlock = 'main-page';
@@ -51,6 +53,9 @@ class FilmWithResultRoby extends React.Component {
       film,
       filmsGenre,
       getMovieGenre,
+      getSearchParams,
+      paginationParams,
+      getActivePage,
     } = this.props;
 
     return(
@@ -68,6 +73,11 @@ class FilmWithResultRoby extends React.Component {
           getFilm={this.fetchMovieById}
           movies={movies}
           resultsCount={resultsCount}
+          setPageParams={getSearchParams}
+          paginationParams={paginationParams}
+          setActivePage={getActivePage}
+          searchParams={searchParams}
+          getMovies={getMovies}
         />
       </>
     );
@@ -82,7 +92,8 @@ export default withRouter(connect(
       film: state.movieReducer.movie,
       filmsGenre: state.movieReducer.movieGenre,
       routes: state.routing.locationBeforeTransitions,
+      paginationParams: state.paginationReducer,
     }
   },
-  { getMovies, getMovie, getMovieGenre, deleteMovie }
+  { getMovies, getMovie, getMovieGenre, deleteMovie, getSearchParams, getActivePage }
 )(FilmWithResultRoby))
