@@ -16,11 +16,13 @@ import './results-body.scss';
 const classBlock = 'results-body';
 
 export default class ResultsBody extends React.Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      activePage: null,
+  componentDidUpdate(prevProps) {
+    const {movies, searchParams, getMovies, toggleIsFetchMovies} = this.props;
+    if (prevProps.searchParams.offset !== searchParams.offset && movies.length) {
+      console.log('2');
+      getMovies(searchParams);
+      toggleIsFetchMovies();
     }
   }
 
@@ -68,11 +70,12 @@ export default class ResultsBody extends React.Component {
   };
 
   changePage = (activePage, limit) => {
-    const { setPageParams, setActivePage } = this.props;
+    const { setPageParams, setActivePage, searchParams } = this.props;
     const offset = getOffset(activePage, limit);
 
     setPageParams({ offset });
     setActivePage(activePage);
+    console.log(searchParams);
   };
 
   render() {

@@ -56,6 +56,7 @@ class FilmWithResultRoby extends React.Component {
       getSearchParams,
       paginationParams,
       getActivePage,
+      searchParams,
     } = this.props;
 
     return(
@@ -92,6 +93,7 @@ export default withRouter(connect(
       film: state.movieReducer.movie,
       filmsGenre: state.movieReducer.movieGenre,
       routes: state.routing.locationBeforeTransitions,
+      searchParams: state.searchReducer,
       paginationParams: state.paginationReducer,
     }
   },

@@ -16,38 +16,36 @@ class SearchPanelWithResultBody extends React.Component {
     super(props);
 
     this.state = {
-      page: null,
       query: null,
       isFetchMovies: false,
     }
   };
 
   static getDerivedStateFromProps(props, state) {
-    console.log(props);
-    const { movies, searchParams, getMovies, routes, paginationParams: { activePage } } = props;
-    const { query, page, isFetchMovies } = state;
+    const { getMovies, routes } = props;
+    const { query, isFetchMovies } = state;
 
-    if (routes.search && routes.search !== query) {
-      console.log('2');
-      getMovies(routes.search);
-      return { query: routes.search, isFetchMovies: true };
-    }
-    if (activePage !== page && !isFetchMovies) {
+    if (routes.search && routes.search !== query && !isFetchMovies) {
       console.log('1');
-      getMovies(searchParams);
-      return { page: activePage, isFetchMovies: false };
+      getMovies(routes.search);
+      return {query: routes.search, isFetchMovies: true};
     }
-    return { query: routes.search };
+    return {query: routes.search, isFetchMovies: false };
   }
 
   fetchMovies = (params) => {
     const { getMovies } = this.props;
 
+    this.setState({ isFetchMovies: true});
     getMovies(params);
   };
 
   fetchMovieById = () => {
     smoothScrollToTop();
+  };
+
+  toggleIsFetchMovies = () => {
+    this.setState({isFetchMovies: true});
   };
 
   render() {
@@ -82,6 +80,7 @@ class SearchPanelWithResultBody extends React.Component {
           setActivePage={getActivePage}
           searchParams={searchParams}
           getMovies={getMovies}
+          toggleIsFetchMovies={this.toggleIsFetchMovies}
         />
       </>
     );
