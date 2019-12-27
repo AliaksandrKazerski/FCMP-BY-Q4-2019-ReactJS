@@ -8,6 +8,7 @@ import { getMovies, getMovie, getMovieGenre } from '../../../store/thunks/movies
 import { getSearchParams } from '../../../store/thunks/searchThunks';
 import { getActivePage } from '../../../store/thunks/paginationThunks';
 import { smoothScrollToTop } from "../../../utils/scroll";
+import { getPageFromOffset } from '../../../utils/pagination';
 
 const classBlock = 'search-panel-with-result-body';
 
@@ -22,16 +23,26 @@ class SearchPanelWithResultBody extends React.Component {
   };
 
   static getDerivedStateFromProps(props, state) {
+    console.log(props);
     const { getMovies, routes } = props;
     const { query, isFetchMovies } = state;
 
     if (routes.search && routes.search !== query && !isFetchMovies) {
-      console.log('1');
       getMovies(routes.search);
+
       return {query: routes.search, isFetchMovies: true};
     }
     return {query: routes.search, isFetchMovies: false };
   }
+
+  // componentDidUpdate(prevProps) {
+  //   const { getActivePage, searchParams, paginationParams } = this.props;
+  //
+  //
+  //   if (prevProps.paginationParams.activePage !== paginationParams.activePage) {
+  //     getActivePage(getPageFromOffset(searchParams.offset, paginationParams.limit));
+  //   }
+  // }
 
   fetchMovies = (params) => {
     const { getMovies } = this.props;
@@ -69,6 +80,7 @@ class SearchPanelWithResultBody extends React.Component {
           getSearchParams={this.fetchMovies}
         />
        <ResultsBody
+          withSearchPanel
           filmsGenre={filmsGenre}
           film={film}
           showResultCount

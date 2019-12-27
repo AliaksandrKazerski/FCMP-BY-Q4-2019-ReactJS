@@ -7,7 +7,7 @@ import ItemGenre from '../../atoms/item-genre';
 import IconButton from '../../atoms/icon-button';
 import Pagination from '../pagination';
 
-import { getOffset } from '../../../utils/pagination';
+import { getOffset, getPageFromOffset } from '../../../utils/pagination';
 
 import Logo from '../../../../img/netflix2.png'
 
@@ -16,13 +16,36 @@ import './results-body.scss';
 const classBlock = 'results-body';
 
 export default class ResultsBody extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isActivePagination: false,
+      offset: null,
+    }
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    const { searchParams, setActivePage, paginationParams } = props;
+
+    if (state.offset !== searchParams.offset) {
+      setActivePage(getPageFromOffset(searchParams.offset, paginationParams.limit));
+      return { offset: searchParams.offset };
+    }
+    return null;
+  }
 
   componentDidUpdate(prevProps) {
-    const {movies, searchParams, getMovies, toggleIsFetchMovies} = this.props;
-    if (prevProps.searchParams.offset !== searchParams.offset && movies.length) {
-      console.log('2');
-      getMovies(searchParams);
-      toggleIsFetchMovies();
+    const { searchParams, getMovies, toggleIsFetchMovies, withSearchPanel, film } = this.props;
+
+    if (prevProps.searchParams.offset !== searchParams.offset && this.state.isActivePagination) {
+      if (withSearchPanel) {
+        getMovies(searchParams);
+        toggleIsFetchMovies();
+      } else {
+        getMovies({ params: { search: film.genres[0], searchBy: 'genres', offset: searchParams.offset }, config: 'byGenres' });
+      }
+      this.setState({ isActivePagination: false });
     }
   }
 
@@ -76,6 +99,7 @@ export default class ResultsBody extends React.Component {
     setPageParams({ offset });
     setActivePage(activePage);
     console.log(searchParams);
+    this.setState({ isActivePagination: true });
   };
 
   render() {

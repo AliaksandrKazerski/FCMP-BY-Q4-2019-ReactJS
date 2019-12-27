@@ -4,3 +4,11 @@ export function getOffset(activePage, limit) {
   }
   return `${activePage * limit - limit}`;
 }
+
+export function getPageFromOffset(offset, limit) {
+  debugger;
+  if (offset === '0') {
+    return 1;
+  }
+  return offset / limit + 1;
+}
