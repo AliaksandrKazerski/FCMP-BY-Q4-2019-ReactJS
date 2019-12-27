@@ -23,7 +23,6 @@ class SearchPanelWithResultBody extends React.Component {
   };
 
   static getDerivedStateFromProps(props, state) {
-    console.log(props);
     const { getMovies, routes } = props;
     const { query, isFetchMovies } = state;
 
@@ -35,18 +34,10 @@ class SearchPanelWithResultBody extends React.Component {
     return {query: routes.search, isFetchMovies: false };
   }
 
-  // componentDidUpdate(prevProps) {
-  //   const { getActivePage, searchParams, paginationParams } = this.props;
-  //
-  //
-  //   if (prevProps.paginationParams.activePage !== paginationParams.activePage) {
-  //     getActivePage(getPageFromOffset(searchParams.offset, paginationParams.limit));
-  //   }
-  // }
-
   fetchMovies = (params) => {
     const { getMovies } = this.props;
 
+    params.offset = '0';
     this.setState({ isFetchMovies: true});
     getMovies(params);
   };

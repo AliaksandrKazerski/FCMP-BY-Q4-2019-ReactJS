@@ -6,7 +6,6 @@ export function getOffset(activePage, limit) {
 }
 
 export function getPageFromOffset(offset, limit) {
-  debugger;
   if (offset === '0') {
     return 1;
   }

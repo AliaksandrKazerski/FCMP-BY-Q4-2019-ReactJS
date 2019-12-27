@@ -98,7 +98,6 @@ export default class ResultsBody extends React.Component {
 
     setPageParams({ offset });
     setActivePage(activePage);
-    console.log(searchParams);
     this.setState({ isActivePagination: true });
   };
 
@@ -114,16 +113,16 @@ export default class ResultsBody extends React.Component {
           {!!movies.length ? this.renderMovies() : <span className={`${classBlock}__movies--not-found`}> No films found </span>}
         </div>
         <div className={`${classBlock}__footer`}>
+          <Pagination
+            count={resultsCount}
+            limit={paginationParams.limit}
+            activePage={paginationParams.activePage}
+            changePage={this.changePage}
+          />
           <IconButton
             logo={Logo}
           />
         </div>
-        <Pagination
-          count={resultsCount}
-          limit={paginationParams.limit}
-          activePage={paginationParams.activePage}
-          changePage={this.changePage}
-        />
       </div>
     );
   };

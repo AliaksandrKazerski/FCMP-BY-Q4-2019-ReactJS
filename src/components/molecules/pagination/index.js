@@ -49,8 +49,6 @@ export default class Pagination extends React.Component {
   renderPaginationButton = () => {
     const { count, activePage, limit, changePage } = this.props;
     const { paginationPosition, paginationSize} = this.state;
-    console.log(this.props.activePage);
-    console.log(paginationPosition);
 
     const pageCount = Math.ceil(count / limit);
 
@@ -58,11 +56,13 @@ export default class Pagination extends React.Component {
       <>
         <button
           onClick={this.leftDoubleArrowOnClick}
+          className={`${classBlock}__button`}
         >
           {'<<'}
         </button>
         <button
           onClick={this.leftArrowOnClick}
+          className={`${classBlock}__button`}
         >
           {'<'}
         </button>
@@ -84,11 +84,13 @@ export default class Pagination extends React.Component {
         })}
         <button
           onClick={this.rightArrowOnClick}
+          className={`${classBlock}__button`}
         >
           {'>'}
         </button>
         <button
           onClick={this.rightDoubleArrowOnClick}
+          className={`${classBlock}__button`}
         >
           {'>>'}
         </button>
