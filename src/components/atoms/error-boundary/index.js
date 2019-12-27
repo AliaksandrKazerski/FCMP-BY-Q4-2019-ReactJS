@@ -16,7 +16,7 @@ export default class ErrorBoundary extends React.PureComponent {
 
   render() {
     if (this.state.hasError) {
-      return(
+      return (
       <div className={classBlock}>
         <h1 className={`${classBlock}__title`}>The application didn't work. Please come back later.</h1>
       </div>

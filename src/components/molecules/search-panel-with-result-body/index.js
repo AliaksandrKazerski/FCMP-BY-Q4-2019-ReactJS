@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import SearchPanel from '../../molecules/search-panel';
 import ResultsBody from '../../molecules/results-body';
 
-import { getMovies, getMovie, getMovieGenre, getSearchParams } from '../../../store/thunks/moviesThunks';
+import { getMovies, getMovie, getMovieGenre } from '../../../store/thunks/moviesThunks';
+import { getSearchParams } from '../../../store/thunks/searchThunks';
+import { getActivePage } from '../../../store/thunks/paginationThunks';
 import { smoothScrollToTop } from "../../../utils/scroll";
 
 const classBlock = 'search-panel-with-result-body';
@@ -14,42 +16,37 @@ class SearchPanelWithResultBody extends React.Component {
     super(props);
 
     this.state = {
-      query: this.props.routes.search,
+      query: null,
       isFetchMovies: false,
     }
   };
-
-  componentDidMount() {
-    const { getMovies, routes, movies } = this.props;
-
-    if (routes.search && !movies.length) {
-      getMovies(routes.search);
-    }
-
-    smoothScrollToTop();
-  }
 
   static getDerivedStateFromProps(props, state) {
     const { getMovies, routes } = props;
     const { query, isFetchMovies } = state;
 
-    if (routes.search !== query && !isFetchMovies) {
+    if (routes.search && routes.search !== query && !isFetchMovies) {
       getMovies(routes.search);
-      return {query: routes.search};
+
+      return {query: routes.search, isFetchMovies: true};
     }
-    return {query: routes.search, isFetchMovies: false};
+    return {query: routes.search, isFetchMovies: false };
   }
 
   fetchMovies = (params) => {
     const { getMovies } = this.props;
 
+    params.offset = '0';
+    this.setState({ isFetchMovies: true});
     getMovies(params);
-    this.setState({ isFetchMovies: true })
-
   };
 
   fetchMovieById = () => {
     smoothScrollToTop();
+  };
+
+  toggleIsFetchMovies = () => {
+    this.setState({isFetchMovies: true});
   };
 
   render() {
@@ -60,6 +57,9 @@ class SearchPanelWithResultBody extends React.Component {
       filmsGenre,
       searchParams,
       getSearchParams,
+      paginationParams,
+      getMovies,
+      getActivePage,
     } = this.props;
 
     return(
@@ -70,12 +70,19 @@ class SearchPanelWithResultBody extends React.Component {
           getSearchParams={this.fetchMovies}
         />
        <ResultsBody
+          withSearchPanel
           filmsGenre={filmsGenre}
           film={film}
           showResultCount
           getFilm={this.fetchMovieById}
           movies={movies}
           resultsCount={resultsCount}
+          setPageParams={getSearchParams}
+          paginationParams={paginationParams}
+          setActivePage={getActivePage}
+          searchParams={searchParams}
+          getMovies={getMovies}
+          toggleIsFetchMovies={this.toggleIsFetchMovies}
         />
       </>
     );
@@ -91,7 +98,8 @@ export default connect(
       filmsGenre: state.movieReducer.movieGenre,
       routes: state.routing.locationBeforeTransitions,
       searchParams: state.searchReducer,
+      paginationParams: state.paginationReducer,
     }
   },
-  { getMovies, getMovie, getMovieGenre, getSearchParams }
+  { getMovies, getMovie, getMovieGenre, getSearchParams, getActivePage }
 )(SearchPanelWithResultBody)

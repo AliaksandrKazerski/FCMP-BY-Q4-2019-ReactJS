@@ -1,0 +1,27 @@
+@import '../../../mixins/font-montserrat.scss';
+
+.pagination {
+  display: flex;
+  justify-content: center;
+
+  &__button {
+    cursor: pointer;
+    background-color: #555555;
+    @include font-montserrat(20px, #ffffff);
+    border: 1px solid #ffffff;
+    border-radius: 3px;
+    width: 50px;
+    height: 50px;
+    margin: 0 2px;
+
+    &:hover {
+      background-color: #424242;
+    }
+
+    &--active {
+      background-color: #424242;
+      @include font-montserrat(20px, #ffffff, bold);
+      width: 50px;
+    }
+  }
+}

@@ -24,17 +24,17 @@ export default class SearchPanel extends React.PureComponent {
 
   changeSearch = (value) => {
     const { setSearchParams } = this.props;
-    setSearchParams({search: value});
+    setSearchParams({ search: value });
   };
 
   changeSearchBy = (filter) => {
     const { setSearchParams } = this.props;
-    setSearchParams({searchBy: filter});
+    setSearchParams({ searchBy: filter });
   };
 
   changeSortBy = (filter) => {
     const { setSearchParams } = this.props;
-    setSearchParams({sortBy: filter});
+    setSearchParams({ sortBy: filter });
   };
 
   render() {

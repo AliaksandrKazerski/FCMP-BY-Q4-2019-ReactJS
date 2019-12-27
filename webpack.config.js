@@ -20,7 +20,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
     chunkFilename: '[name].bundle.js',
-    publicPath: '/',
+    publicPath: 'dist',
   },
   module: {
     rules: [{
