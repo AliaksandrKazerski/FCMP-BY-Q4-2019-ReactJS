@@ -2,6 +2,7 @@ const initialState = {
   search: '',
   searchBy: 'title',
   sortBy: 'release date',
+  offset: '0',
 };
 
 export default function searchReducer(state = initialState, action) {

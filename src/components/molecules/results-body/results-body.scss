@@ -19,7 +19,7 @@
   }
 
   &__movies {
-    padding: 60px 70px;
+    padding: 60px 70px 10px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -34,11 +34,12 @@
   }
 
   &__footer {
-    height: 70px;
     background-color: #555555;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 20px;
 
     .icon-button {
       width: 200px;
