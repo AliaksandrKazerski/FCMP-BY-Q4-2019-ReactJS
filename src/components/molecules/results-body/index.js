@@ -93,7 +93,7 @@ export default class ResultsBody extends React.Component {
   };
 
   changePage = (activePage, limit) => {
-    const { setPageParams, setActivePage, searchParams } = this.props;
+    const { setPageParams, setActivePage } = this.props;
     const offset = getOffset(activePage, limit);
 
     setPageParams({ offset });

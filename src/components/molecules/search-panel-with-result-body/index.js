@@ -8,7 +8,6 @@ import { getMovies, getMovie, getMovieGenre } from '../../../store/thunks/movies
 import { getSearchParams } from '../../../store/thunks/searchThunks';
 import { getActivePage } from '../../../store/thunks/paginationThunks';
 import { smoothScrollToTop } from "../../../utils/scroll";
-import { getPageFromOffset } from '../../../utils/pagination';
 
 const classBlock = 'search-panel-with-result-body';
 

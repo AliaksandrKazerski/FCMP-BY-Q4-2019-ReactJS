@@ -12,6 +12,7 @@ export default class ItemImage extends React.PureComponent {
           <img
           className={classBlock}
           src={imgURL}
+          alt={'image'}
           />
         </>
     );
