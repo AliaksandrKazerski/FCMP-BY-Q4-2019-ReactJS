@@ -17,10 +17,10 @@ module.exports = {
     extensions: ['*', '.js', '.jsx']
   },
   output: {
-    path: path.resolve(__dirname, '/dist'),
+    path: path.resolve(__dirname, 'ist'),
     filename: 'bundle.js',
     chunkFilename: '[name].bundle.js',
-    publicPath: '/',
+    publicPath: 'dist',
   },
   module: {
     rules: [{
