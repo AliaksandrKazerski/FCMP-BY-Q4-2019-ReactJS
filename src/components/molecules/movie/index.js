@@ -3,7 +3,7 @@ import React from 'react';
 import ItemImage from '../../atoms/item-image/index';
 import ItemReleaseDate from '../../atoms/item-release-date';
 import ItemGenre from '../../atoms/item-genre';
-import ItemTitle from '../../atoms/item-title/inex';
+import ItemTitle from '../../atoms/item-title/index';
 
 import './movie.scss';
 

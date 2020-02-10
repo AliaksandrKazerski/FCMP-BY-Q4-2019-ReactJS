@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import ItemImage from '../../atoms/item-image/index';
 import ItemReleaseDateAndRunTime from '../../atoms/item-release-date';
-import ItemTitle from '../../atoms/item-title/inex';
+import ItemTitle from '../../atoms/item-title/index';
 import ItemRating from '../../atoms/item-rating';
 import ItemDescription from '../../atoms/item-description';
 import IconButton from '../../atoms/icon-button';
